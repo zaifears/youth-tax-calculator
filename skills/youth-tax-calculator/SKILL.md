@@ -1,6 +1,6 @@
 ---
 name: youth-tax-calculator
-description: Comprehensive Bangladesh individual income tax calculation and filing assistant for the NBR e-Return portal (etaxnbr.gov.bd). Tailored for students, interns, fresh graduates, and young employees entering the tax net under the Income Tax Act 2023. Incorporates the official NBR eReturn System User Manual, zero-difference balance sheet reconciliation (IT-10B / IT-10BB), multi-broker capital loss carry-forward (Section 70), student stipends, Islamic P2P financing (Biniyog.io), mutual funds (EDGE AMC), high bank turnover defense, and audit protection.
+description: Comprehensive Bangladesh individual income tax calculation and filing assistant for the NBR e-Return portal (etaxnbr.gov.bd). Tailored for students, interns, fresh graduates, and young employees entering the tax net under the Income Tax Act 2023. Incorporates the official NBR eReturn System User Manual, zero-difference balance sheet reconciliation (IT-10B / IT-10BB), multi-broker capital loss carry-forward (Section 70), student stipends, Islamic P2P financing (P2P Crowdfunding Platform), mutual funds (Asset Management Company), high bank turnover defense, and audit protection.
 ---
 
 # Bangladesh Youth Tax Calculator & Filing Expert (`youth-tax-calculator`)
@@ -15,7 +15,7 @@ The **`youth-tax-calculator`** is an expert tax advisory skill engineered for yo
 It synthesizes:
 1. **Statutory Tax Laws:** ITA 2023, S.R.O.s, Sixth Schedule (Parts 1 & 2), and annual Finance Act slabs.
 2. **Official NBR User Manual:** Exact UI architecture, screen-by-screen navigation, form validations, and system constraints from the National Board of Revenue's official *eReturn System User Manual* (`UserManualEN.pdf`) and *Special Registration Guidelines* (`Special_Registration.pdf`).
-3. **Youth Reality Adaptation:** Solutions for academic stipends, competition prize pools, parental support transfers, Islamic P2P investments (Biniyog.io), mutual funds, brokerage accounts, and high bank turnover reconciliation.
+3. **Youth Reality Adaptation:** Solutions for academic stipends, competition prize pools, parental support transfers, Islamic P2P investments (P2P Crowdfunding Platform), mutual funds, brokerage accounts, and high bank turnover reconciliation.
 
 ---
 
@@ -58,7 +58,7 @@ For taxable income exceeding the tax-free threshold:
 | **Parental Gift / Family Support** | Section 56(g) | **100% Non-Taxable** | Enter in IT-10B under `Source of Fund` $\rightarrow$ `Other Receipts` (Manual Page 60) |
 | **Bank Profit / Savings Interest** | Section 35 | Taxable; claim bank TDS credit | Disclose under `Financial Assets` $\rightarrow$ `Interest/Profit (Bank/FI)`; enter TDS |
 | **Cash Dividends** | Section 35 | Taxable; claim 10%/15% TDS | Disclose under `Financial Assets` $\rightarrow$ `Dividend (Any kind)`; claim TDS |
-| **Islamic P2P Markup (Biniyog.io)** | Section 35 / 38 | Taxable profit only | Disclose under `Interest From Any Other Securities/Financial Assets` |
+| **Islamic P2P Markup (P2P Crowdfunding Platform)** | Section 35 / 38 | Taxable profit only | Disclose under `Interest From Any Other Securities/Financial Assets` |
 | **Stock Capital Gains / Losses** | Sections 57, 70, 72 | Gains taxed/exempt; Losses carried forward | Disclose under `Capital Gains` $\rightarrow$ `Transfer of share of listed Company` |
 | **Hackathon / Case Competition** | Section 38 | Taxable (user's net share only) | Disclose under `Other Sources` $\rightarrow$ `Any Other Income` |
 
@@ -75,7 +75,7 @@ $$\text{Rebate} = \min \begin{cases}
 \end{cases}$$
 
 ### Eligible Youth Investment Categories:
-1. **Open-End / Closed-End Mutual Funds:** SEC-approved funds (e.g., EDGE Al-Amin Shariah Consumer Fund, Shanta, LankaBangla). Enter at purchase cost.
+1. **Open-End / Closed-End Mutual Funds:** SEC-approved funds (e.g., Approved Shariah Mutual Fund, Shanta, LankaBangla). Enter at purchase cost.
 2. **Deposit Pension Scheme (DPS):** Allowable actual deposits up to **BDT 1,20,000** per year.
 3. **Listed Stocks & Securities:** Purchases in secondary market (shares held at year-end).
 4. **Life / Health Insurance Premiums:** Up to 10% of the insurance policy sum assured.
@@ -142,7 +142,7 @@ Expatriate Bangladeshis or students abroad without a BD biometric SIM can regist
 
 #### 1. Income from Employment (Schedule 1)
 * Select `Private/Other than Government Pay Scale`.
-* Enter Employer Name (e.g., `IFA Consultancy`, `bKash Limited`).
+* Enter Employer Name (e.g., `Consultancy Firm Ltd`, `Fintech Services Ltd`).
 * Enter `Basic Salary`. For interns without salary breakdown, enter total stipend received under Basic Salary.
 * Allowances default to `0`.
 * The portal automatically deducts $\min(\frac{1}{3} \text{ Salary}, \text{BDT } 4,50,000)$ as tax-exempt!
@@ -151,7 +151,7 @@ Expatriate Bangladeshis or students abroad without a BD biometric SIM can regist
 #### 2. Income from Financial Assets (Section 35)
 * **Bank / FI Interest:** Select `Interest/Profit (Bank/FI)`. Enter Bank Name, Account Number, Gross Interest Credited, Bank Charges/Fees (`0`), and TDS Deducted.
 * **Dividends:** Select `Dividend (Any kind)`. Enter Company/Fund Name, BO Account Number, Gross Dividend, and TDS Deducted.
-* **Islamic P2P Crowdfunding:** Select `Interest From Any Other Securities/Financial Assets`. Enter platform name (e.g., `biniyog.io / Pure Fintech Ltd`), description, and net profit markup.
+* **Islamic P2P Crowdfunding:** Select `Interest From Any Other Securities/Financial Assets`. Enter platform name (e.g., `Approved P2P Crowdfunding Platform`), description, and net profit markup.
 
 #### 3. Capital Gains (Sections 57, 70, 72)
 * Select `Transfer of share of listed Company (Individual)`.
@@ -170,14 +170,14 @@ Expatriate Bangladeshis or students abroad without a BD biometric SIM can regist
 * Select `Other Exemption under 6th Schedule Part 1`.
 * In the Paragraph dropdown, select `Any Other Exemption Under 6th Schedule Part 1`.
 * Enter Description: `Student Stipend to Meet Cost of Education`.
-* Enter Source/Particulars: `[University Name] Student Scholarship & Stipend` (e.g. BUP).
+* Enter Source/Particulars: `[University Name] Student Scholarship & Stipend` (e.g. University).
 * Enter Amount: (e.g., `18,000`).
 
 *Click **Save & Continue**.*
 
 ### Screen 4: Tax Rebate (Schedule 5)
 * Tick ☑ **`Unit Certificate/Mutual Fund/ETF/Joint Investment Scheme`**.
-* Enter Open-End Mutual Fund Name (e.g., `EDGE Al-Amin Shariah Consumer Fund`), BO Account Number, and purchase cost.
+* Enter Open-End Mutual Fund Name (e.g., `Approved Shariah Mutual Fund`), BO Account Number, and purchase cost.
 * ⚠️ **Do NOT double-count:** If open-end mutual fund units are held inside a brokerage BO account, declare them ONLY under Mutual Funds, NOT again under `Listed Stocks or Shares`.
 * If you maintain a DPS, tick `Deposit Pension Scheme (DPS)` and enter bank name, account number, and yearly deposits (up to BDT 1,20,000).
 * Click **Save & Continue**.
@@ -192,7 +192,7 @@ For youth and students with total income $\le$ BDT 5,00,000 without cars or city
 | **Accommodation Expenses** | BDT 0 | `0` | Residing in family home (Comment: `Living with Family`) |
 | **Transport Expenses** | BDT 15,000 – 30,000 | `20000` | Metro Rail, public transit, bus, ride-sharing |
 | **Utility Expenses** | BDT 6,000 – 15,000 | `10000` | Mobile recharge, home internet share |
-| **Education Expenses** | Exact fees paid | `55000` | University semester tuition + professional exams (BUP / ICAB) |
+| **Education Expenses** | Exact fees paid | `55000` | University semester tuition + professional exams (University / ICAB) |
 | **Festivals & Recreation** | BDT 10,000 – 30,000 | `20000` | Eid gifts, personal books, clothing |
 | **Misc. & Outflow** | BDT 5,00,0 – 10,000 | `5000` | Incidentals and stationery |
 | **Total Living Expenditure** | **BDT 1,30,000 – 2,20,000** | **BDT 1,70,000** | Balanced against total receipts |
@@ -204,12 +204,12 @@ For youth and students with total income $\le$ BDT 5,00,000 without cars or city
 #### 1. Assets
 * **Financial Assets:**
   * Listed Shares / Mutual Funds: Enter acquisition cost (e.g., `28956`).
-  * Other Financial Assets: Enter P2P principal (e.g., Biniyog.io active campaigns: `199178`).
+  * Other Financial Assets: Enter P2P principal (e.g., P2P Crowdfunding Platform active campaigns: `199178`).
 * **Cash & Fund Outside Business:**
   * Enter aggregate liquid balance as of **30 June** across:
     - Cash in hand
     - Bank accounts (closing ledger balances from bank tax certificates)
-    - Mobile Financial Services (bKash, Nagad, Rocket closing balances)
+    - Mobile Financial Services (Mobile Financial Services (MFS) closing balances)
     - Uninvested brokerage BO ledger cash
 * **Gold & Personal Jewellery (Manual Page 51):**
   - Inherited or gifted gold: State quantity in Bhori/Grams. Under NBR official rules, *value may be declared as `0` if acquisition cost is unknown*.
@@ -250,7 +250,7 @@ $$\text{Difference} = \text{Total Fund Outflow} - \text{Total Source of Fund} \e
    * Bank TDS and Dividend TDS appear as tax credits.
    * If Net Tax is `0.00` and TDS was deducted, the portal registers the TDS under **`Source Tax Refundable`** (e.g., `BDT 31 Refundable`).
 3. **Payment Methods (if tax is due):**
-   * Instant e-Payment gateway supports **bKash, Nagad, Rocket, Upay**, Debit Cards, Credit Cards, and Internet Banking.
+   * Instant e-Payment gateway supports **Mobile Financial Services (MFS)**, Debit Cards, Credit Cards, and Internet Banking.
    * Generates automated e-Challan / A-Challan with immediate clearing.
 
 ### Screen 8: Return View, OTP Verification & Document Retrieval
@@ -284,9 +284,9 @@ Under Sections 182 and 183 of ITA 2023, the Deputy Commissioner of Taxes (DCT) m
 1. **Bank Statements:** Full 12-month statements for all active bank accounts (July 1 – June 30), highlighting competition disbursements and incoming family support.
 2. **Bank Tax Certificates:** Annual certificates showing 30 June balance, interest credited, and TDS deducted.
 3. **Brokerage Statements:** Signed portfolio valuations and tax certificates from all active brokerage houses (NBL, IDLC, etc.) as of 30 June.
-4. **Mutual Fund Tax Certificates:** Official dividend and investment tax certificates from asset management companies (e.g. EDGE AMC).
-5. **Fintech / P2P Tax Statements:** Signed annual statements from crowdfunding platforms (Biniyog.io / Pure Fintech Ltd).
-6. **Academic Verification:** University Student ID, fee clearance receipts, and stipend payment advice (e.g. BUP Trust Bank records).
+4. **Mutual Fund Tax Certificates:** Official dividend and investment tax certificates from asset management companies (e.g. Asset Management Company).
+5. **Fintech / P2P Tax Statements:** Signed annual statements from crowdfunding platforms (Approved P2P Crowdfunding Platform).
+6. **Academic Verification:** University Student ID, fee clearance receipts, and stipend payment advice (e.g. University Trust Bank records).
 7. **Professional Exam Receipts:** Invoices and payment proofs for ICAB / ACCA / professional certifications.
 8. **Signed Parental Gift Declaration:** A signed confirmation from father/mother stating that they provided living and educational support to their son/daughter during the income year under Section 56(g).
 9. **Final PSR & Return Acknowledgement:** Downloaded from `etaxnbr.gov.bd`.
