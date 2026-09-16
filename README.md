@@ -23,7 +23,7 @@ Young taxpayers in Bangladesh face unique financial scenarios that standard corp
 
 * 🎓 **Academic Stipends & Scholarships:** Full tax exemption under the **Sixth Schedule, Part 1, Paragraph 8** by correctly activating the portal's hidden *Tax Exempted Income* schedule.
 * 💼 **Internships & Contracted Traineeships:** Correct categorization under *Income from Employment* (Section 32) with automatic application of the statutory **$\frac{1}{3}$rd salary exemption** (capped at BDT 4,50,000).
-* 🛡️ **High Bank Turnover Defense:** Robust, audit-ready balance sheet methods to account for high-volume bank deposits originating from shared student competition prize pools, peer expense settlements, and family support transfers (**Section 56(g)**) with **zero tax liability**.
+* 🛡️ **High Bank Turnover Defense:** Robust, audit-ready balance sheet methods to account for high-volume bank deposits originating from shared student academic and student award prize pools, peer expense settlements, and family support transfers (**Section 56(g)**) with **zero tax liability**.
 * 📉 **Multi-Broker Capital Loss Carry-Forward:** Correctly setting off and carrying forward capital losses across multiple brokerage accounts under **Section 70**, while clarifying the known system-generated math artifact on Page 9 vs. Page 10 of NBR's draft PDF.
 * ⚖️ **Zero-Difference Balance Sheet Math (IT-10B & IT-10BB):** Automated balancing equations ensuring:
   $$\text{Total Fund Outflow} - \text{Total Source of Fund} \equiv \mathbf{0.00}$$
@@ -41,7 +41,7 @@ flowchart TD
     Breakdown -->|Internship Salary| Emp["Employment Income<br>(Less 1/3rd Statutory Exemption)"]
     Breakdown -->|Dividends / Bank Interest| Fin["Financial Assets Income<br>(Eligible for TDS Source Tax Credit)"]
     Breakdown -->|Secondary Market Stocks| Cap["Capital Gains<br>(Loss Carry-Forward u/s 70)"]
-    Breakdown -->|Competition Winnings| Other["Other Sources<br>(Individual Proportional Share Only)"]
+    Breakdown -->|Academic & Event Prize Awards| Other["Other Sources<br>(Individual Proportional Share Only)"]
 
     Emp & Fin & Cap & Other --> TaxBase["Net Taxable Income"]
     TaxBase --> Threshold{"Taxable Income ≤ Exemption Ceiling?<br>(BDT 3,50,000 / 4,00,000)"}
@@ -118,7 +118,7 @@ Once installed, simply chat with Antigravity about your tax filing. The skill au
 
 * *"I am a university student and intern in Bangladesh, how do I file my taxes on etaxnbr.gov.bd?"*
 * *"How do I declare my peer crowdfunding profit, mutual funds, and stock market losses?"*
-* *"Explain my high bank transactions from competitions and family transfers in IT-10B."*
+* *"Explain my high bank transactions from award prizes and family transfers in IT-10B."*
 * *"How do I balance my Assets & Liabilities to achieve an exact 0.00 difference?"*
 * *"Why does the e-Return draft PDF show a discrepancy between Line 7 and Line 10?"*
 

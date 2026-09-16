@@ -15,7 +15,7 @@ The **`youth-tax-calculator`** is an expert tax advisory skill engineered for yo
 It synthesizes:
 1. **Statutory Tax Laws:** ITA 2023, S.R.O.s, Sixth Schedule (Parts 1 & 2), and annual Finance Act slabs.
 2. **Official NBR User Manual:** Exact UI architecture, screen-by-screen navigation, form validations, and system constraints from the National Board of Revenue's official *eReturn System User Manual* (`UserManualEN.pdf`) and *Special Registration Guidelines* (`Special_Registration.pdf`).
-3. **Youth Reality Adaptation:** Solutions for academic stipends, competition prize pools, parental support transfers, Islamic P2P investments (P2P Crowdfunding Platform), mutual funds, brokerage accounts, and high bank turnover reconciliation.
+3. **Youth Reality Adaptation:** Solutions for academic stipends, academic and student award prize pools, parental support transfers, Islamic P2P investments (P2P Crowdfunding Platform), mutual funds, brokerage accounts, and high bank turnover reconciliation.
 
 ---
 
@@ -60,7 +60,7 @@ For taxable income exceeding the tax-free threshold:
 | **Cash Dividends** | Section 35 | Taxable; claim 10%/15% TDS | Disclose under `Financial Assets` $\rightarrow$ `Dividend (Any kind)`; claim TDS |
 | **Islamic P2P Markup (P2P Crowdfunding Platform)** | Section 35 / 38 | Taxable profit only | Disclose under `Interest From Any Other Securities/Financial Assets` |
 | **Stock Capital Gains / Losses** | Sections 57, 70, 72 | Gains taxed/exempt; Losses carried forward | Disclose under `Capital Gains` $\rightarrow$ `Transfer of share of listed Company` |
-| **Hackathon / Case Competition** | Section 38 | Taxable (user's net share only) | Disclose under `Other Sources` $\rightarrow$ `Any Other Income` |
+| **Academic & Event Prize Awards** | Section 38 | Taxable (user's net share only) | Disclose under `Other Sources` $\rightarrow$ `Any Other Income` |
 
 ---
 
@@ -125,7 +125,7 @@ Expatriate Bangladeshis or students abroad without a BD biometric SIM can regist
   * ☑ `Income from Employment` (if contracted intern / salaried)
   * ☑ `Income from Financial Assets` (bank interest, dividends, P2P profit)
   * ☑ `Capital Gains` (stock trading realized gain/loss)
-  * ☑ `Income from Other Sources` (case competitions, consulting, freelance)
+  * ☑ `Income from Other Sources` (prize awards, consulting, freelance)
 * Click **Save & Continue**.
 
 ### Screen 2: Additional Information & IT-10B Criteria
@@ -163,7 +163,7 @@ Expatriate Bangladeshis or students abroad without a BD biometric SIM can regist
 
 #### 4. Income from Other Sources (Section 38)
 * Select `Any Other Income`.
-* **Competition / Hackathon Prize Money:** When prize money clears into a team leader's account, declare **only your individual proportionate share** (e.g., 1/4th of BDT 1,10,000 = BDT 27,500).
+* **Prize & Award Money:** When prize money clears into a team leader's account, declare **only your individual proportionate share** (e.g., 1/4th of BDT 1,10,000 = BDT 27,500).
 * Retain bank statements demonstrating the immediate outward disbursement of the remaining shares to your teammates.
 
 #### 5. Tax Exempted Income
@@ -281,9 +281,9 @@ When filing with a net capital loss carried forward under Section 70:
 
 Under Sections 182 and 183 of ITA 2023, the Deputy Commissioner of Taxes (DCT) may call for records within 6 years. Maintain a dedicated digital/physical binder containing:
 
-1. **Bank Statements:** Full 12-month statements for all active bank accounts (July 1 – June 30), highlighting competition disbursements and incoming family support.
+1. **Bank Statements:** Full 12-month statements for all active bank accounts (July 1 – June 30), highlighting award disbursements and incoming family support.
 2. **Bank Tax Certificates:** Annual certificates showing 30 June balance, interest credited, and TDS deducted.
-3. **Brokerage Statements:** Signed portfolio valuations and tax certificates from all active brokerage houses (NBL, IDLC, etc.) as of 30 June.
+3. **Brokerage Statements:** Signed portfolio valuations and tax certificates from all active brokerage houses (Brokerage 1, Brokerage 2, etc.) as of 30 June.
 4. **Mutual Fund Tax Certificates:** Official dividend and investment tax certificates from asset management companies (e.g. Asset Management Company).
 5. **Fintech / P2P Tax Statements:** Signed annual statements from crowdfunding platforms (Approved P2P Crowdfunding Platform).
 6. **Academic Verification:** University Student ID, fee clearance receipts, and stipend payment advice (e.g. University Trust Bank records).
