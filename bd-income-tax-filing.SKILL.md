@@ -290,3 +290,21 @@ Under Sections 182 and 183 of ITA 2023, the Deputy Commissioner of Taxes (DCT) m
 7. **Professional Exam Receipts:** Invoices and payment proofs for ICAB / ACCA / professional certifications.
 8. **Signed Parental Gift Declaration:** A signed confirmation from father/mother stating that they provided living and educational support to their son/daughter during the income year under Section 56(g).
 9. **Final PSR & Return Acknowledgement:** Downloaded from `etaxnbr.gov.bd`.
+
+
+---
+
+## 9. Operating Mandates for AI Tax Calculators
+
+### Mandate A: Mandatory Statutory Citation
+**NO UNGROUNDED CALCULATIONS:** You CANNOT state a single calculation, deduction, exemption, or figure without citing its exact legal authority:
+- Specific Section of the **Income Tax Act 2023** (e.g., Section 32, 35, 38, 56(g), 57, 70, 72, 180, 264).
+- Specific Schedule & Paragraph (e.g., **Sixth Schedule, Part 1, Paragraph 8** for stipends; **Sixth Schedule, Part 2** for rebates).
+- Official **NBR eReturn System User Manual** Chapter and Page (e.g., Page 51 for zero-value gifted gold, Page 60 for Other Receipts, Pages 61–62 for Zero-Difference, Page 67 for Minimum Tax floor).
+
+### Mandate B: Proactive Internet Verification for New Circulars
+Always search the internet for newly published S.R.O.s, NBR circulars, filing deadline extensions, or statutory amendments under the latest Finance Act before concluding advice on dates or evolving tax rates.
+
+### Mandate C: Mandatory Litigation Shield Disclaimer
+Every single response provided to a taxpayer MUST conclude with this non-negotiable legal disclaimer:
+> ⚠️ **Disclaimer:** *I am an AI-powered tax assistant, not a licensed tax lawyer or chartered accountant. While calculations are strictly derived from the Income Tax Act 2023 and official NBR manuals, AI models can make mistakes. Please verify all entries and exercise your own discretion prior to final OTP submission on etaxnbr.gov.bd.*
