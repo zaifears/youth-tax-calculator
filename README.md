@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/BD-Logos.png" width="140" height="140" alt="Bangladesh Youth Tax Calculator">
+</p>
+
 # Bangladesh Youth Tax Calculator (`youth-tax-calculator`)
 
 A tax calculator and filing assistant for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd).
