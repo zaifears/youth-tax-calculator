@@ -4,7 +4,7 @@
 
 # Bangladesh Youth Tax Calculator (`youth-tax-calculator`)
 
-A tax calculator and filing assistant for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd).
+A tax calculator and filing assistant made for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd).
 
 ---
 
@@ -12,7 +12,7 @@ A tax calculator and filing assistant for Bangladeshi students, interns, fresh g
 
 | Jump To | What It Covers |
 | :--- | :--- |
-| [TL;DR](#tldr) | Fast summary: 0 BDT tax, TDS refund, zero difference |
+| [TL;DR](#tldr) | Fast summary: keep tax at minimum, TDS refund, zero difference |
 | [Visual Guide & Flowcharts](#how-it-works-visual-guide) | Flowcharts for income flow and balance sheet math |
 | [How to Use](#how-to-use) | AI Skill (Primary), interactive wizard, and CLI flags |
 | [For LLMs and Web Crawlers](#for-llms-and-web-crawlers) | Direct context endpoints and llms.txt standard |
@@ -24,7 +24,7 @@ A tax calculator and filing assistant for Bangladeshi students, interns, fresh g
 
 ## TL;DR
 
-If you are a student, intern, or fresh graduate in Bangladesh, your tax return on `etaxnbr.gov.bd` should almost always result in **0 BDT tax payable**, and any bank source tax (TDS) deducted should be **refunded to you**.
+If you are a student, intern, or fresh graduate in Bangladesh, this project helps you **keep tax expense at minimum**, claim all eligible statutory exemptions (often resulting in **0 BDT tax payable** for qualifying incomes), and get any bank source tax (TDS) deducted **refunded to you**.
 
 This project is an **AI Agent Skill first**, backed by a deterministic Python engine:
 1. **The AI Skill (`skills/youth-tax-calculator`):** The primary brain. You give your AI assistant the rules, laws, and screen-by-screen guidance so it can guide you through every screen of `etaxnbr.gov.bd` with zero hallucinations.
@@ -93,6 +93,10 @@ By installing this skill, your AI gets the complete screen-by-screen e-Return pl
 * **macOS / Linux (Bash):**
   ```bash
   chmod +x install.sh && ./install.sh
+  ```
+* **Autonomous AI Agents (Claude Code / Cursor / Terminal):**
+  ```bash
+  curl -s https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/llms-full.txt > tax_skill.md
   ```
 
 Once installed, simply ask your AI:

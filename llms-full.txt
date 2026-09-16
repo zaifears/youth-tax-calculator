@@ -6,12 +6,12 @@
 
 # Bangladesh Youth Tax Calculator (`youth-tax-calculator`)
 
-> Complete statutory tax filing skill and deterministic calculation engine for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd) under the Income Tax Act 2023.
+> Complete statutory tax filing skill and deterministic calculation engine made for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd) under the Income Tax Act 2023.
 
 ## Core Rules and Statutory Baselines
 
 - Tax-Free Threshold: 350,000 BDT (General) / 400,000 BDT (Female and 65+) / 475,000 BDT (Disabled).
-- Zero Tax and TDS Refund: If taxable income <= 350,000 BDT, tax payable is strictly 0 BDT. Minimum tax never applies. 100% of bank TDS is refundable.
+- Kept at Minimum and TDS Refund: Keeps tax expense at minimum (0 BDT floor for taxable income <= 350,000 BDT). Minimum tax never applies. 100% of bank TDS is refundable.
 - Salary Exemption (Section 32): Lower of 1/3rd gross salary or 450,000 BDT is automatically exempt.
 - Educational Stipends (Sixth Schedule, Part 1, Paragraph 8): 100% tax-free. Declared under Tax Exempted Income.
 - Family Support (Section 56g): Money from parents or spouse is non-taxable capital receipt. Enter under IT-10B Source of Fund > Other Receipts.
