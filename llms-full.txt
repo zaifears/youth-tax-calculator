@@ -1,0 +1,1050 @@
+# Bangladesh Youth Tax Calculator (`youth-tax-calculator`) - Full AI Context Dossier
+
+> Complete bundled knowledge base for LLMs, autonomous coding agents, and legal crawlers.
+
+## PART 1: CORE REPOSITORY INDEX & BASICS
+
+# Bangladesh Youth Tax Calculator (`youth-tax-calculator`)
+
+> Complete statutory tax filing skill and deterministic calculation engine for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd) under the Income Tax Act 2023.
+
+## Core Rules and Statutory Baselines
+
+- Tax-Free Threshold: 350,000 BDT (General) / 400,000 BDT (Female and 65+) / 475,000 BDT (Disabled).
+- Zero Tax and TDS Refund: If taxable income <= 350,000 BDT, tax payable is strictly 0 BDT. Minimum tax never applies. 100% of bank TDS is refundable.
+- Salary Exemption (Section 32): Lower of 1/3rd gross salary or 450,000 BDT is automatically exempt.
+- Educational Stipends (Sixth Schedule, Part 1, Paragraph 8): 100% tax-free. Declared under Tax Exempted Income.
+- Family Support (Section 56g): Money from parents or spouse is non-taxable capital receipt. Enter under IT-10B Source of Fund > Other Receipts.
+- Capital Losses (Section 70): Stock market losses carry forward for up to 6 consecutive years.
+- Zero-Difference Balance Sheet: Form IT-10B requires Total Outflow == Total Source of Funds (Difference = 0.00). Parental Support covers the living expense shortfall.
+- Deterministic Math: LLMs must never use next-token arithmetic for multi-line balance sheets. Always run calculator.py.
+
+## Main Skill File
+
+- [SKILL.md](skills/youth-tax-calculator/SKILL.md): Complete system prompt, agent instructions, screen-by-screen NBR portal workflows, edge-case handling, and audit defense dossier.
+
+## Deterministic Execution Engine
+
+- [calculator.py](calculator.py): Python calculation engine and CLI wizard. Solves tax slabs, rebates, bank TDS refunds, and IT-10B zero-difference math. Supports interactive prompts, CLI flags, and --output-json.
+
+## Statutory Codex and Reference Documentation
+
+- [Statutory Tax Law Codex](skills/youth-tax-calculator/references/07_statutory_tax_law_codex.md): Deep legal analysis of Income Tax Act 2023 (Sections 30, 32, 35, 38, 56g, 57, 70, 163, 180, 264) and S.R.O. frameworks.
+- [e-TIN and Portal Registration](skills/youth-tax-calculator/references/01_getting_started_and_registration.md): Biometric SIM verification, e-TIN setup, and first-time login on etaxnbr.gov.bd.
+- [Income Heads and Exemptions](skills/youth-tax-calculator/references/02_assessment_and_income_heads.md): Screen 1 and Screen 3 field entries for salaries, scholarships, financial assets, and capital gains.
+- [Investment Rebates and Living Costs](skills/youth-tax-calculator/references/03_rebate_and_living_expenses.md): Schedule 5 mutual fund rebates and Form IT-10BB living expense schedules.
+- [Assets, Liabilities and IT-10B Math](skills/youth-tax-calculator/references/04_assets_and_liabilities_it10b.md): Balance sheet reconciliation, opening wealth, and solving for Difference = 0.00.
+- [Tax Slabs and Minimum Tax Rules](skills/youth-tax-calculator/references/05_tax_computation_and_payment.md): Progressive slabs, city corporation minimum tax floor conditions, and A-Challan payment.
+- [Return Submission and Verification](skills/youth-tax-calculator/references/06_return_submission_and_tax_records.md): 14-page PDF review, OTP SMS verification, and PSR / Tax Certificate download.
+
+## CLI Quick Reference
+
+```bash
+# Interactive wizard
+python calculator.py
+
+# Direct calculation
+python calculator.py --salary 35000 --stipend 18000 --interest 228 --bank-tds 31 --bank-balance 34908 --capital-gain 896 --capital-loss 3924 --mutual-funds 28956 --expenses 170000 --opening-wealth 56759
+
+# JSON output for automated tool calling
+python calculator.py --salary 35000 --expenses 170000 --output-json
+```
+
+## Raw Links for AI Ingestion
+
+- Full Skill: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/skills/youth-tax-calculator/SKILL.md
+- Law Codex: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/skills/youth-tax-calculator/references/07_statutory_tax_law_codex.md
+- Python Engine: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/calculator.py
+
+
+---
+
+## PART 2: THE COMPLETE AI AGENT SKILL SPECIFICATION (`SKILL.md`)
+
+---
+name: youth-tax-calculator
+description: Comprehensive Bangladesh individual income tax calculation and filing assistant for the NBR e-Return portal (etaxnbr.gov.bd). Tailored for students, interns, fresh graduates, and young employees entering the tax net under the Income Tax Act 2023. Incorporates the official NBR eReturn System User Manual, zero-difference balance sheet reconciliation (IT-10B / IT-10BB), multi-broker capital loss carry-forward (Section 70), student stipends, Islamic P2P financing (P2P Crowdfunding Platform), mutual funds (Asset Management Company), high bank turnover defense, and audit protection.
+---
+
+# Bangladesh Youth Tax Calculator & Filing Expert (`youth-tax-calculator`)
+### Authoritative Guide for Students, Interns, Fresh Graduates & First-Time Employees on `etaxnbr.gov.bd`
+
+---
+
+## 1. Identity & System Overview
+
+The **`youth-tax-calculator`** is an expert tax advisory skill engineered for young individuals entering the formal taxation net in Bangladesh under the **Income Tax Act 2023 (ITA 2023)** and the prevailing **Finance Act**.
+
+It synthesizes:
+1. **Statutory Tax Laws:** ITA 2023, S.R.O.s, Sixth Schedule (Parts 1 & 2), and annual Finance Act slabs.
+2. **Official NBR User Manual:** Exact UI architecture, screen-by-screen navigation, form validations, and system constraints from the National Board of Revenue's official *eReturn System User Manual* (`UserManualEN.pdf`) and *Special Registration Guidelines* (`Special_Registration.pdf`).
+3. **Youth Reality Adaptation:** Solutions for academic stipends, academic and student award prize pools, parental support transfers, Islamic P2P investments (P2P Crowdfunding Platform), mutual funds, brokerage accounts, and high bank turnover reconciliation.
+
+---
+
+## 2. Statutory Foundations & Current Rates (AY 2026–2027)
+
+### A. Tax-Free Exemption Ceilings (General & Special)
+| Category | Tax-Free Threshold | Statutory Basis |
+| :--- | :---: | :--- |
+| **General Taxpayers (Male / Young Professionals)** | **BDT 3,50,000 – 4,00,000** | Finance Act Standard |
+| **Female Taxpayers & Senior Citizens (Aged 65+)** | **BDT 4,00,000 – 4,50,000** | Finance Act Standard |
+| **Persons with Disabilities / Third Gender** | **BDT 4,75,000 – 5,25,000** | Finance Act Standard |
+| **Gazetted War-Wounded Freedom Fighters** | **BDT 5,00,000 – 5,50,000** | Finance Act Standard |
+| **Parent/Legal Guardian of Disabled Child** | **+ BDT 50,000 per child** | Additional Allowance |
+
+### B. Progressive Tax Slabs & Rates
+For taxable income exceeding the tax-free threshold:
+| Taxable Income Slab | Tax Rate | Cumulative Max Tax in Slab |
+| :--- | :---: | :---: |
+| **First Tier (Tax-Free Threshold)** | **0%** | BDT 0 |
+| **Next BDT 1,00,000 / 3,00,000** | **5% / 10%** | Slabs per Finance Act |
+| **Next BDT 3,00,000 / 4,00,000** | **10% / 15%** | Progressively graduated |
+| **Next BDT 4,00,000 / 5,00,000** | **15% / 20%** | Progressively graduated |
+| **Next BDT 5,00,000 / 20,00,000** | **20% / 25%** | Progressively graduated |
+| **Remaining Balance** | **25% / 30%** | Top marginal slab |
+
+### C. The Minimum Tax Floor Rules (Official Manual Page 67)
+* **Dhaka & Chattogram City Corporation areas:** BDT 5,000
+* **Other City Corporations:** BDT 4,000
+* **Non-City Corporation Municipal / Rural areas:** BDT 3,000
+* ⚠️ **CRUCIAL RULE FOR YOUTH & STUDENTS:** Minimum tax **only applies if Total Taxable Income exceeds the tax-free exemption threshold**. If your taxable income is equal to or less than the threshold (e.g., student earning BDT 25,000 salary where taxable part is BDT 16,667 $\le$ 3,50,000), total tax payable is strictly **BDT 0.00**. Minimum tax is **NEVER** charged on income below the tax-free limit!
+
+---
+
+## 3. Statutory Deductions & Exemptions for Youth
+
+| Income Type | Statutory Citation | Tax Treatment | e-Return Portal Input Method |
+| :--- | :--- | :--- | :--- |
+| **Employment / Internship Salary** | Section 32; Sixth Schedule | Lower of **1/3rd gross salary** or **BDT 4,50,000** is exempt | Enter gross Basic Salary in Schedule 1; system auto-computes 1/3rd deduction |
+| **University Stipend / Scholarship** | Sixth Schedule, Part 1, Para 8 | **100% Tax-Exempt** | Select `Tax Exempted Income: Yes` on Screen 1; disclose under Para `Any Other Exemption` |
+| **Parental Gift / Family Support** | Section 56(g) | **100% Non-Taxable** | Enter in IT-10B under `Source of Fund` $\rightarrow$ `Other Receipts` (Manual Page 60) |
+| **Bank Profit / Savings Interest** | Section 35 | Taxable; claim bank TDS credit | Disclose under `Financial Assets` $\rightarrow$ `Interest/Profit (Bank/FI)`; enter TDS |
+| **Cash Dividends** | Section 35 | Taxable; claim 10%/15% TDS | Disclose under `Financial Assets` $\rightarrow$ `Dividend (Any kind)`; claim TDS |
+| **Islamic P2P Markup (P2P Crowdfunding Platform)** | Section 35 / 38 | Taxable profit only | Disclose under `Interest From Any Other Securities/Financial Assets` |
+| **Stock Capital Gains / Losses** | Sections 57, 70, 72 | Gains taxed/exempt; Losses carried forward | Disclose under `Capital Gains` $\rightarrow$ `Transfer of share of listed Company` |
+| **Academic & Event Prize Awards** | Section 38 | Taxable (user's net share only) | Disclose under `Other Sources` $\rightarrow$ `Any Other Income` |
+
+---
+
+## 4. Investment Tax Rebate Formula (Schedule 5)
+
+Under the Sixth Schedule (Part 2), tax rebates on eligible investments are calculated as:
+
+$$\text{Rebate} = \min \begin{cases} 
+15\% \text{ (or prevailing rate)} \times \text{Eligible Investment} \\ 
+3\% \times \text{Total Taxable Income} \\ 
+\text{BDT } 10,00,000 \text{ (Absolute Statutory Cap)} 
+\end{cases}$$
+
+### Eligible Youth Investment Categories:
+1. **Open-End / Closed-End Mutual Funds:** SEC-approved funds (e.g., Approved Shariah Mutual Fund, Shanta, LankaBangla). Enter at purchase cost.
+2. **Deposit Pension Scheme (DPS):** Allowable actual deposits up to **BDT 1,20,000** per year.
+3. **Listed Stocks & Securities:** Purchases in secondary market (shares held at year-end).
+4. **Life / Health Insurance Premiums:** Up to 10% of the insurance policy sum assured.
+5. **Government Zakat Fund / Approved Philanthropic Contributions:** 100% eligible.
+
+> [!NOTE]
+> Tax rebate directly reduces tax liability. However, a rebate **cannot create a negative tax liability or generate a tax refund by itself**. Refunds only arise from excess TDS (Tax Deducted at Source) or AIT (Advance Income Tax) paid.
+
+---
+
+## 5. Official NBR e-Return UI/UX & Technical Constraints
+*(Derived from the NBR eReturn System User Manual)*
+
+### A. Technical Pre-requisites
+* **Portal URL:** `https://etaxnbr.gov.bd`
+* **Supported Devices:** Laptop or Desktop computer with minimum 1366×768 screen resolution. (NBR officially advises against using mobile smartphones due to modal overlay clipping and dropdown misfiring).
+* **Browser Compatibility:** Google Chrome, Microsoft Edge, Mozilla Firefox.
+* **NID-Verified Mobile Number:** The registration SIM **must be biometrically registered against the taxpayer's own NID**. If registered under a parent's NID, registration will fail.
+
+### B. Special Registration for Overseas Bangladeshis / NRBs (Manual Appendix)
+Expatriate Bangladeshis or students abroad without a BD biometric SIM can register by emailing `ereturn@etaxnbr.gov.bd` with:
+1. Current country of residence and foreign mailing address.
+2. Active overseas cell phone number.
+3. High-resolution scan of Bangladeshi NID / Smart Card.
+4. Copy of Bangladeshi passport (bio pages) and valid visa page.
+5. Passport-sized photograph.
+*NBR verifies the email and issues a secure registration link valid for 7 days.*
+
+### C. Critical UI Quirks & Portal Behavior
+1. **Single Page Application (SPA) Trap:** The portal runs on Angular. Do NOT use the browser's Back/Forward buttons or refresh the page (`F5`) without saving, as unsaved form state will be purged. Always click **Save & Continue** or **Save as Draft**.
+2. **The "Green Tick" (✓) Requirement:** In dropdown forms—especially under **Capital Gains** (`Transfer of share of listed Company`) and **Financial Assets**—selecting an item from the dropdown displays a small **green checkmark icon (✓)** next to it. You **MUST click the green tick** to mount and render the form input fields!
+3. **The "Tax Exempted Income" Navigation Lock:** If you have tax-free income (e.g., university stipend, remittances), you **must select `Yes`** for *"Any income which is fully exempted from tax?"* on Screen 1. If left as `No`, the entire `Tax Exempted Income` left-hand tab remains invisible and inaccessible.
+4. **Whole Integer Enforcement:** The system strictly rejects decimals or paisa. All currency figures must be rounded to the nearest integer.
+5. **No Negative Total Income:** Total income across all heads cannot be less than zero. Realized capital losses cannot create negative total income; they must be carried forward under Section 70.
+
+---
+
+## 6. Screen-by-Screen Filing Workflow on `etaxnbr.gov.bd`
+
+### Screen 1: Assessment Information
+* **Return Scheme:** `Self` (Section 180 / Universal Self).
+* **Assessment Year:** Select current AY (e.g., `2026-2027`).
+* **Income Year:** Pre-filled (e.g., `01/07/2025 to 30/06/2026`).
+* **Resident Status:** `Resident` (Standard for citizens living in BD $\ge$ 182 days).
+* **Any income which is fully exempted from tax?** Select **`Yes`** *(Essential to disclose student stipends)*.
+* **Heads of Income:** Select **`Yes`**, then tick relevant heads:
+  * ☑ `Income from Employment` (if contracted intern / salaried)
+  * ☑ `Income from Financial Assets` (bank interest, dividends, P2P profit)
+  * ☑ `Capital Gains` (stock trading realized gain/loss)
+  * ☑ `Income from Other Sources` (prize awards, consulting, freelance)
+* Click **Save & Continue**.
+
+### Screen 2: Additional Information & IT-10B Criteria
+* **Location of Main Source of Income:** Select your City Corporation (e.g., `Dhaka South City Corporation`).
+* **Any Claim for Tax Rebate for Investment?** Select **`Yes`**.
+* **Mandatory IT-10B Asset Statement Prompts:**
+  * *Total Gross Wealth exceeds BDT 50,00,000?* Change default "Yes" to **`No`**.
+  * *Own Motor Car?* `No` | *Offshore Property?* `No` | *Company Director?* `No` | *House Property/Apartment in City Corp?* `No`.
+  * **Portal Prompt:** *"IT10B is not mandatory for you. Still want to submit?"* $\rightarrow$ Select **`Yes`**.
+    *(Filing IT-10B voluntarily creates an unbroken legal paper trail, shields you against future bank turnover audits, and whitens accumulated capital)*.
+* Click **Save & Continue**.
+
+### Screen 3: Income Details
+
+#### 1. Income from Employment (Schedule 1)
+* Select `Private/Other than Government Pay Scale`.
+* Enter Employer Name (e.g., `Consultancy Firm Ltd`, `Fintech Services Ltd`).
+* Enter `Basic Salary`. For interns without salary breakdown, enter total stipend received under Basic Salary.
+* Allowances default to `0`.
+* The portal automatically deducts $\min(\frac{1}{3} \text{ Salary}, \text{BDT } 4,50,000)$ as tax-exempt!
+* Click `+ Add Employment` to add multiple internships/jobs during the income year.
+
+#### 2. Income from Financial Assets (Section 35)
+* **Bank / FI Interest:** Select `Interest/Profit (Bank/FI)`. Enter Bank Name, Account Number, Gross Interest Credited, Bank Charges/Fees (`0`), and TDS Deducted.
+* **Dividends:** Select `Dividend (Any kind)`. Enter Company/Fund Name, BO Account Number, Gross Dividend, and TDS Deducted.
+* **Islamic P2P Crowdfunding:** Select `Interest From Any Other Securities/Financial Assets`. Enter platform name (e.g., `Approved P2P Crowdfunding Platform`), description, and net profit markup.
+
+#### 3. Capital Gains (Sections 57, 70, 72)
+* Select `Transfer of share of listed Company (Individual)`.
+* 💡 **Click the Green Checkmark (✓)** to render the inputs.
+* Enter BO ID (16 digits), Broker Name, Client Code, and Date.
+* Enter Gross Realized Gain or Loss. **Negative numbers (e.g., `-3924`) are accepted!**
+* If you trade across multiple brokers, click `+ Add Another Category` to list each broker's net realized figure.
+* Net capital losses cannot be offset against salary or bank interest; the portal backend auto-routes unabsorbed losses to `Loss Not Set Off - Section 70`.
+
+#### 4. Income from Other Sources (Section 38)
+* Select `Any Other Income`.
+* **Prize & Award Money:** When prize money clears into a team leader's account, declare **only your individual proportionate share** (e.g., 1/4th of BDT 1,10,000 = BDT 27,500).
+* Retain bank statements demonstrating the immediate outward disbursement of the remaining shares to your teammates.
+
+#### 5. Tax Exempted Income
+* Select `Other Exemption under 6th Schedule Part 1`.
+* In the Paragraph dropdown, select `Any Other Exemption Under 6th Schedule Part 1`.
+* Enter Description: `Student Stipend to Meet Cost of Education`.
+* Enter Source/Particulars: `[University Name] Student Scholarship & Stipend` (e.g. University).
+* Enter Amount: (e.g., `18,000`).
+
+*Click **Save & Continue**.*
+
+### Screen 4: Tax Rebate (Schedule 5)
+* Tick ☑ **`Unit Certificate/Mutual Fund/ETF/Joint Investment Scheme`**.
+* Enter Open-End Mutual Fund Name (e.g., `Approved Shariah Mutual Fund`), BO Account Number, and purchase cost.
+* ⚠️ **Do NOT double-count:** If open-end mutual fund units are held inside a brokerage BO account, declare them ONLY under Mutual Funds, NOT again under `Listed Stocks or Shares`.
+* If you maintain a DPS, tick `Deposit Pension Scheme (DPS)` and enter bank name, account number, and yearly deposits (up to BDT 1,20,000).
+* Click **Save & Continue**.
+
+### Screen 5: Expenditure Statement (Form IT-10BB)
+For youth and students with total income $\le$ BDT 5,00,000 without cars or city corporation real estate, IT-10BB is optional, but filing a realistic statement is best practice.
+
+**Realistic & Defensible Youth Expenditure Breakdown:**
+| Category | Realistic Annual Range | Sample Entry | Rationale / Comments |
+| :--- | :---: | :---: | :--- |
+| **Personal & Food Expenses** | BDT 40,000 – 80,000 | `60000` | Living with family; personal meal expenses |
+| **Accommodation Expenses** | BDT 0 | `0` | Residing in family home (Comment: `Living with Family`) |
+| **Transport Expenses** | BDT 15,000 – 30,000 | `20000` | Metro Rail, public transit, bus, ride-sharing |
+| **Utility Expenses** | BDT 6,000 – 15,000 | `10000` | Mobile recharge, home internet share |
+| **Education Expenses** | Exact fees paid | `55000` | University semester tuition + professional exams (University / ICAB) |
+| **Festivals & Recreation** | BDT 10,000 – 30,000 | `20000` | Eid gifts, personal books, clothing |
+| **Misc. & Outflow** | BDT 5,00,0 – 10,000 | `5000` | Incidentals and stationery |
+| **Total Living Expenditure** | **BDT 1,30,000 – 2,20,000** | **BDT 1,70,000** | Balanced against total receipts |
+
+*Click **Save & Continue**.*
+
+### Screen 6: Assets & Liabilities (Form IT-10B)
+
+#### 1. Assets
+* **Financial Assets:**
+  * Listed Shares / Mutual Funds: Enter acquisition cost (e.g., `28956`).
+  * Other Financial Assets: Enter P2P principal (e.g., P2P Crowdfunding Platform active campaigns: `199178`).
+* **Cash & Fund Outside Business:**
+  * Enter aggregate liquid balance as of **30 June** across:
+    - Cash in hand
+    - Bank accounts (closing ledger balances from bank tax certificates)
+    - Mobile Financial Services (Mobile Financial Services (MFS) closing balances)
+    - Uninvested brokerage BO ledger cash
+* **Gold & Personal Jewellery (Manual Page 51):**
+  - Inherited or gifted gold: State quantity in Bhori/Grams. Under NBR official rules, *value may be declared as `0` if acquisition cost is unknown*.
+* **Personal Electronics (Laptops/Phones):**
+  - Used personal electronics bought in preceding years under BDT 50,000 need NOT be added as new assets in the current year, preventing artificial cash outflow distortions.
+
+#### 2. Liabilities
+* Institutional (Student loans, bank liabilities) or Non-institutional (borrowed from relatives).
+
+#### 3. Other Outflow
+* Form IT-10BB living expenses auto-populate here.
+* Gifts or financial contributions given to others (if any).
+
+#### 4. Net Wealth of Previous Income Year (Manual Page 60–61)
+* **First-Time Filers:** Enter `0` (or initial opening net wealth if documented).
+* **Repeat Filers:** Enter the **exact closing Net Wealth from Line 5 of previous year's Form IT-10B**.
+
+#### 5. Source of Fund (Manual Page 59–60)
+* **Income Shown in Return:** Auto-calculated from Taxable Income + Tax-Exempt Stipends.
+* **Other Receipts:**
+  * If capital losses were carried forward under Section 70, the portal auto-lists: `Loss Not Set Off - Section 70: -[Amount]`.
+  * **Parental Gift / Family Support (Manual Page 60):** Click `+ Add` under Other Receipts. Title: `Gift and Living Support from Parents`. Enter the exact balancing figure so that:
+
+$$\text{Difference} = \text{Total Fund Outflow} - \text{Total Source of Fund} \equiv \mathbf{0.00}$$
+
+> [!IMPORTANT]
+> **NBR ZERO-DIFFERENCE RULE (Manual Page 61–62):**
+> The portal strictly evaluates that `Difference == 0`. If the difference is not zero, the portal flags an imbalance error. Always balance `Other Receipts` to reach exact zero.
+
+*Click **Save & Continue**.*
+
+### Screen 7: Tax & Payment
+1. **Tax Computation Review:**
+   * Tax on Regular Income: Calculated based on slabs.
+   * Less Tax Rebate (Schedule 5): Subtracted.
+   * Net Tax Payable: If income $\le$ threshold, displays **`0.00`**.
+2. **Tax Deducted at Source (TDS) & Advance Tax:**
+   * Bank TDS and Dividend TDS appear as tax credits.
+   * If Net Tax is `0.00` and TDS was deducted, the portal registers the TDS under **`Source Tax Refundable`** (e.g., `BDT 31 Refundable`).
+3. **Payment Methods (if tax is due):**
+   * Instant e-Payment gateway supports **Mobile Financial Services (MFS)**, Debit Cards, Credit Cards, and Internet Banking.
+   * Generates automated e-Challan / A-Challan with immediate clearing.
+
+### Screen 8: Return View, OTP Verification & Document Retrieval
+1. Click **Proceed to online return** to preview the full 14-page Form IT-11GA draft.
+2. Verify all figures, schedules, and attachments.
+3. Check the declaration box: *"I declare that the information provided is correct and complete."*
+4. Click **Submit Return**. A 6-digit OTP is sent via SMS to your NID-verified phone number.
+5. Enter the OTP and confirm submission.
+6. **IMMEDIATE POST-SUBMISSION ACTIONS (Manual Chapter 8):**
+   * Download and save the **PSR (Proof of Submission of Return)** / Acknowledgement Slip. *(Mandatory under Section 264 for opening bank accounts, getting credit cards, trade licenses, etc.)*.
+   * Download the official **Tax Certificate** (featuring NBR QR code verification).
+   * Download and archive the complete **Submitted Return (Form IT-11GA)**.
+
+---
+
+## 7. The Section 70 PDF Discrepancy Explained (Audit Defense)
+
+When filing with a net capital loss carried forward under Section 70:
+* **In the Online Portal:** The database calculates `Total Outflow == Total Source of Fund`, displaying **`Difference: 0`**, which satisfies the validation check and permits submission.
+* **In the Generated 14-Page PDF Draft:** The backend report generator deducts the negative carried-forward loss from Receipts in the summary block. As a result:
+  $$\text{Line 7 (Gross Wealth)} + \text{Carried Loss} = \text{Line 10 (Total Assets)}$$
+  *(e.g., BDT 2,60,014 + BDT 3,028 = BDT 2,63,042).*
+* **DCT Audit Defense:** This is a documented, standard system-generated artifact of the Synesis IT e-Return reporting engine. It is 100% corroborated and justified by the system-generated *Section 70 Loss Carry Forward Statement* appended on Page 12 of the return. It does NOT constitute an evasion, discrepancy, or taxpayer accounting error.
+
+---
+
+## 8. Youth Audit Defense Dossier (6-Year Retention Checklist)
+
+Under Sections 182 and 183 of ITA 2023, the Deputy Commissioner of Taxes (DCT) may call for records within 6 years. Maintain a dedicated digital/physical binder containing:
+
+1. **Bank Statements:** Full 12-month statements for all active bank accounts (July 1 – June 30), highlighting award disbursements and incoming family support.
+2. **Bank Tax Certificates:** Annual certificates showing 30 June balance, interest credited, and TDS deducted.
+3. **Brokerage Statements:** Signed portfolio valuations and tax certificates from all active brokerage houses (Brokerage 1, Brokerage 2, etc.) as of 30 June.
+4. **Mutual Fund Tax Certificates:** Official dividend and investment tax certificates from asset management companies (e.g. Asset Management Company).
+5. **Fintech / P2P Tax Statements:** Signed annual statements from crowdfunding platforms (Approved P2P Crowdfunding Platform).
+6. **Academic Verification:** University Student ID, fee clearance receipts, and stipend payment advice (e.g. University Trust Bank records).
+7. **Professional Exam Receipts:** Invoices and payment proofs for ICAB / ACCA / professional certifications.
+8. **Signed Parental Gift Declaration:** A signed confirmation from father/mother stating that they provided living and educational support to their son/daughter during the income year under Section 56(g).
+9. **Final PSR & Return Acknowledgement:** Downloaded from `etaxnbr.gov.bd`.
+
+
+---
+
+## 9. Operating Mandates for AI Tax Calculators
+
+### Mandate A: Mandatory Statutory Citation
+**NO UNGROUNDED CALCULATIONS:** You CANNOT state a single calculation, deduction, exemption, or figure without citing its exact legal authority:
+- Specific Section of the **Income Tax Act 2023** (e.g., Section 32, 35, 38, 56(g), 57, 70, 72, 180, 264).
+- Specific Schedule & Paragraph (e.g., **Sixth Schedule, Part 1, Paragraph 8** for stipends; **Sixth Schedule, Part 2** for rebates).
+- Official **NBR eReturn System User Manual** Chapter and Page (e.g., Page 51 for zero-value gifted gold, Page 60 for Other Receipts, Pages 61–62 for Zero-Difference, Page 67 for Minimum Tax floor).
+
+### Mandate B: Mandatory Deterministic Code Execution
+**ZERO MENTAL ARITHMETIC:** Any LLM acting under this skill must delegate arithmetic (rebate formula, 1/3rd salary deduction, balance sheet subtractions, and minimum tax evaluation) to a code interpreter or Python script (e.g. `calculator.py`). Never perform multi-step financial math via next-token prediction alone.
+
+### Mandate C: Proactive Internet Verification for New Circulars
+Always search the internet for newly published S.R.O.s, NBR circulars, filing deadline extensions, or statutory amendments under the latest Finance Act before concluding advice on dates or evolving tax rates.
+
+### Mandate D: Mandatory Litigation Shield Disclaimer
+Every single response provided to a taxpayer MUST conclude with this non-negotiable legal disclaimer:
+> ⚠️ **Disclaimer:** *I am an AI-powered tax assistant, not a licensed tax lawyer or chartered accountant. While calculations are strictly derived from the Income Tax Act 2023 and official NBR manuals, AI models can make mistakes. Please verify all entries and exercise your own discretion prior to final OTP submission on etaxnbr.gov.bd.*
+
+---
+
+## 10. AI Agent Execution Protocol (Step-by-Step)
+
+When an AI agent (Claude, Gemini, GPT, DeepSeek, Llama) interacts with a taxpayer under this skill, it must follow this exact sequence:
+
+```
+[Phase 1: Discovery & Profile Intake]
+   │ Gather: Salary, Stipends, Bank Interest, Dividends, Stock Gain/Loss, Assets, Debts
+   ▼
+[Phase 2: Statutory Classification]
+   │ Apply Sec 32 (1/3rd exemption), 6th Sch Part 1 Para 8 (Stipends), Sec 57/70 (Stocks)
+   ▼
+[Phase 3: Deterministic Python Execution]
+   │ Run calculator.py logic to compute slabs, rebates, and exact IT-10B shortfall
+   ▼
+[Phase 4: Balance Sheet Zero-Difference Reconciliation]
+   │ Solve: Parental Support = Total Outflow - (Taxable Income + Exempt Stipends)
+   │ Verify: Difference == 0.00
+   ▼
+[Phase 5: e-Return Portal Mapping & UI Warnings]
+   │ Map figures to Screens 1-8 (warn about green tick ✓ and exemption toggle)
+   ▼
+[Phase 6: Audit Defense Dossier & Mandatory Legal Disclaimer]
+   │ Present 6-year retention binder checklist and append the closing disclaimer
+```
+
+---
+
+## 11. Companion Reference Documents
+For granular section-by-section statutory text and official portal screenshots, consult:
+1. `references/07_statutory_tax_law_codex.md`: Deep legal analysis of ITA 2023, Sections 30–57, Deemed Income (Sec 56), and Case Law.
+2. `references/01_getting_started_and_registration.md`: NBR Portal setup, e-TIN, and biometric SIM verification.
+3. `references/02_assessment_and_income_heads.md`: Screen 1 & Screen 3 comprehensive data entry fields.
+4. `references/03_rebate_and_living_expenses.md`: Schedule 5 investment rebate calculations and Form IT-10BB living costs.
+5. `references/04_assets_and_liabilities_it10b.md`: Form IT-10B wealth statement and Zero-Difference balance sheet equations.
+6. `references/05_tax_computation_and_payment.md`: Slabs, Minimum Tax floor conditions, and A-Challan payment gateway.
+7. `references/06_return_submission_and_tax_records.md`: 14-page IT-11GA draft, OTP verification, and PSR retrieval.
+8. `calculator.py`: Standalone deterministic Python engine for automated calculations.
+
+
+
+---
+
+## PART 3: STATUTORY TAX LAW CODEX (INCOME TAX ACT 2023)
+
+# Bangladesh Income Tax Act 2023 (ITA 2023) Statutory Codex
+### Comprehensive Legal Reference for Youth, Students, Interns & Young Professionals
+*Governing Law: Income Tax Act 2023 (Act No. XII of 2023 / আয়কর আইন, ২০২৩) & Prevailing Finance Acts*
+
+---
+
+## Part I: Constitutional & Statutory Foundations
+
+### 1.1 The Legal Framework
+Under Article 83 of the Constitution of the People's Republic of Bangladesh, no tax shall be levied or collected except by or under the authority of an Act of Parliament.
+Individual income taxation in Bangladesh is governed by:
+1. **The Income Tax Act 2023 (ITA 2023):** Enacted to replace the historic *Income Tax Ordinance 1984 (ITO 1984)*. It standardizes modern accounting, digital filing, and restructured income heads into 345 Bengali-language sections.
+2. **The Annual Finance Act (অর্থ আইন):** Enacted on or before 30 June each year to amend tax slabs, tax-free exemption ceilings, surcharge thresholds, and rebate rates for the corresponding Assessment Year (effective 1 July).
+3. **Statutory Regulatory Orders (S.R.O.s):** Subordinate legislation issued by the National Board of Revenue (NBR) with Ministry of Law vetting under powers conferred by Section 343 of ITA 2023. S.R.O.s carry binding statutory authority unless ultra vires the parent Act.
+4. **Official Circulars and General Orders (পরিপত্র):** Administrative instructions issued by the NBR clarifying ambiguities in statutory interpretation.
+
+### 1.2 Income Year vs. Assessment Year (Section 2)
+* **Income Year (আয় বর্ষ - Section 2(9)):** The 12-month financial period from **1 July to 30 June** during which income is accrued, earned, or received.
+* **Assessment Year (কর বর্ষ - Section 2(22)):** The 12-month period immediately following the income year (commencing 1 July) during which the income earned in the preceding income year is assessed to tax.
+  * *Example:* Income earned between **1 July 2025 and 30 June 2026** is assessed in **Assessment Year 2026–2027**.
+
+---
+
+## Part II: Classification of Income (Section 30)
+
+Income is legally classified into seven mutually exclusive heads under Section 30 of ITA 2023:
+
+```
+Section 30: Heads of Income (আয়ের খাতসমূহ)
+├── Section 32: Income from Employment (চাকরি হইতে আয়)
+├── Section 35: Income from Financial Assets (আর্থিক পরিসম্পদ হইতে আয়)
+├── Section 38: Income from Other Sources (অন্যান্য উৎস হইতে আয়)
+├── Section 40: Income from Rent (ভাড়া হইতে আয়)
+├── Section 45: Income from Agriculture (কৃষি হইতে আয়)
+├── Section 49: Income from Business (ব্যবসা হইতে আয়)
+└── Section 57: Capital Gains (মূলধনী আয়)
+```
+
+### 2.1 Income from Employment (Section 32 / Schedule 1)
+* **Scope:** All remuneration, wages, basic salary, overtime, bonuses, honoraria, and perquisites received by an individual in connection with an employment or contractual engagement.
+* **Internship Wages & Stipends:** Contracted internship stipends paid by corporate entities, consultancies, or institutions constitute "Employment Income" under Section 32, as an employer-employee or contractual service relationship exists.
+* **Statutory Salary Exemption (Sixth Schedule, Part 1, Paragraph 1):**
+  $$\text{Exempt Employment Amount} = \min\left(\frac{1}{3} \times \text{Gross Salary}, \text{ BDT } 4,50,000\right)$$
+  * The remaining balance after deducting this statutory one-third allowance is the **Net Taxable Employment Income**.
+  * *Practical Case:* If a student earns BDT 35,000 from an internship, one-third ($\text{BDT } 11,667$) is automatically exempt by law, leaving only $\text{BDT } 23,333$ taxable.
+
+### 2.2 Income from Financial Assets (Section 35)
+* **Substantive Reform:** ITA 2023 abolished the separate head "Interest on Securities" and consolidated all investment and banking yields into Section 35:
+  1. **Bank Interest / Profit:** Savings accounts, term deposits, and fixed deposits.
+  2. **Stock Dividends:** Cash dividends distributed by listed or private companies.
+  3. **Islamic P2P Financing & Crowdfunding:** Profit markups generated through licensed Islamic micro-crowdfunding platforms.
+  4. **Bonds & Debentures:** Yields from approved corporate bonds or sovereign Sukuk.
+* **Withholding Tax (TDS Credit - Section 133 & 153):**
+  * Banks deduct 10% TDS (with TIN) or 15% TDS (without TIN) on interest under Section 102.
+  * Companies deduct 10% TDS (with TIN) or 15% TDS (without TIN) on dividends under Section 117.
+  * **Taxpayer Right:** All source tax deducted is creditable against final tax liability. If total tax payable is BDT 0.00, the full TDS amount is statutorily refundable under Section 160.
+
+### 2.3 Capital Gains (Section 57)
+* **Scope:** Any profits or gains arising from the transfer of a capital asset.
+* **Secondary Market Listed Stocks:** Realized gains from secondary market stock trades held in Beneficiary Owner (BO) accounts are calculated as:
+  $$\text{Realized Capital Gain} = \text{Gross Sale Proceeds} - (\text{Cost of Acquisition} + \text{Brokerage Commissions})$$
+* **Statutory Tax Rates:** Capital gains from listed shares of public companies for general individual residents are taxed at reduced statutory rates or subject to specific annual Finance Act exemptions.
+
+### 2.4 Income from Other Sources (Section 38)
+* **Residual Nature:** Covers any income not strictly classifiable under Sections 32 through 57.
+* **Student Competitions & Academic Prize Winnings:**
+  * Prize money won in university hackathons, business case competitions, or innovation challenges falls under Section 38.
+  * **The Beneficial Ownership Principle (Section 2(31)):** When prize money clears into a team leader's account on behalf of a multi-member team, only the leader's **individual proportionate share** (e.g., 1/4th) constitutes their taxable income under Section 38. The outward disbursement of the teammates' shares does not constitute a personal expense or gift; it is a fiduciary pass-through transfer.
+
+---
+
+## Part III: Exemptions & Statutory Rebates (Sixth Schedule)
+
+### 3.1 Fully Exempt Incomes (Sixth Schedule, Part 1)
+Income listed in Part 1 of the Sixth Schedule is completely excluded from the computation of total taxable income under Section 26(1):
+
+* **Paragraph 8: Student Stipends & Scholarships:**
+  > *"Any scholarship, stipend or grant granted to a person to meet the cost of education."*
+  * **Legal Significance:** 100% tax-free. Whether granted by a public university, private university, foreign government, or institutional grant, no tax can be levied on this money.
+  * **Wealth Effect:** While excluded from taxable income, it **is fully recognized as an accretive inflow of capital**. It must be declared in the return to lawfully justify bank balances and living expenses without being flagged as unexplained wealth.
+
+* **Paragraph 21: IT-Enabled Services (ITeS) / Software:**
+  * Income derived from nationwide software development, cloud services, and IT-enabled services under prevailing S.R.O. conditions.
+
+* **Paragraph 24: Foreign Remittances:**
+  * Remittances received through formal banking channels from non-resident Bangladeshis (NRBs) or overseas relatives.
+
+### 3.2 Investment Tax Rebates (Sixth Schedule, Part 2)
+Under Section 78, taxpayers are entitled to an investment tax rebate deducted directly from their Gross Tax Liability:
+
+$$\text{Rebate} = \min \begin{cases} 
+15\% \times \text{Eligible Investment} \\ 
+3\% \times \text{Total Taxable Income} \\ 
+\text{BDT } 10,00,000 \text{ (Statutory Absolute Cap)} 
+\end{cases}$$
+
+#### Statutory Eligible Investment Avenues:
+1. SEC-approved Open-End and Closed-End Mutual Funds (held at cost).
+2. Deposit Pension Scheme (DPS) in any scheduled bank or financial institution (annual deposit allowable up to BDT 1,20,000).
+3. Primary and secondary market purchases of shares/debentures listed on Dhaka Stock Exchange (DSE) or Chittagong Stock Exchange (CSE).
+4. Life and health insurance premiums (allowable up to 10% of the policy sum assured).
+5. Government Zakat Fund or government-approved philanthropic trusts.
+
+---
+
+## Part IV: Multi-Broker Loss Set-off & Carry-Forward (Sections 70 & 72)
+
+Young investors trading across multiple brokerage houses face complex loss set-off rules:
+
+### 4.1 Intra-Head Capital Loss Set-Off (Section 70(1))
+* Where in respect of any assessment year, the net result of the computation under the head "Capital Gains" is a loss, such loss can be set off against capital gains arising from any other capital asset in the same income year.
+* *Example:* A gain of BDT 896 in Brokerage A is offset against a loss of BDT 3,924 in Brokerage B, resulting in an unabsorbed net loss of BDT 3,028.
+
+### 4.2 The Ring-Fence Rule (Section 70(2))
+* Capital losses are legally ring-fenced: **a capital loss cannot be set off against income under any other head** (e.g., salary, bank interest, or consulting). It cannot make the taxpayer's total income negative.
+
+### 4.3 6-Year Carry-Forward Mechanism (Section 70(3))
+* Any unabsorbed net capital loss:
+  1. Is carried forward to the following assessment year.
+  2. Can be set off **only against capital gains** in that subsequent year.
+  3. Can be carried forward for a maximum of **six (6) consecutive assessment years** immediately succeeding the year in which the loss was first computed.
+
+### 4.4 Legal Analysis of the Section 70 e-Return PDF Discrepancy
+* **The Portal Artifact:** In NBR's automated 14-page IT-11GA draft return, the backend calculation script deducts carried-forward capital losses from total receipts in the summary reconciliation box.
+* **The Result:** Page 9 Line 7 (Gross Wealth) shows an amount lower than Page 10 Line 10 (Total Assets) by the exact carried-forward capital loss:
+  $$\text{Line 7 (Gross Wealth)} + \text{Section 70 Loss} = \text{Line 10 (Total Assets)}$$
+* **The Judicial Defense:** Under Section 70, the carried loss is not an expenditure or asset destruction; it is a memorandum tax attribute. The discrepancy is a documented system reporting limitation of Synesis IT's PDF generator, fully justified and reconciled by the official *Schedule of Loss Carry Forward* appended on Page 12 of the return. It does NOT constitute a reporting concealment under Section 212.
+
+---
+
+## Part V: High Bank Turnover & The Deemed Income Trap (Section 56)
+
+### 5.1 The Danger of Section 56 (Unexplained Wealth)
+Under Section 56, the Deputy Commissioner of Taxes (DCT) is legally empowered to deem unexplained deposits, investments, or assets as undisclosed taxable income:
+* **Section 56(a): Unexplained Cash Credits:** Any sum credited in the books/bank account of the taxpayer without a verifiable source.
+* **Section 56(b): Unexplained Investments:** Assets acquired without corresponding declared income or non-taxable receipts.
+* **Consequences:** Taxed at maximum marginal rates (up to 30%), plus concealment penalties up to 100% of the tax evaded (Section 212).
+
+### 5.2 The Parental Support Shield (Section 56(g))
+* **The Statute:** Section 56(g) explicitly excludes gifts and living support received from specific blood relatives—namely **parents (father/mother), spouse, and children**—from the definition of deemed income.
+* **Classification:** Money received from parents is a **non-taxable capital receipt**.
+* **Proper Reporting:** It must not be entered as taxable income; rather, it is declared under **Form IT-10B (Statement of Assets & Liabilities) $\rightarrow$ Source of Fund $\rightarrow$ Other Receipts (Manual Page 60)**.
+* **Audit Immunity:** Even if a student has BDT 20–30 Lakh flowing through their bank account, if the incoming funds represent documented parental transfers (`ABBU`, `MOM`, father's bank account) or educational maintenance, Section 56(g) provides complete statutory audit immunity.
+
+---
+
+## Part VI: The Balance Sheet Law (IT-10B & IT-10BB)
+
+### 6.1 Statutory Criteria for Filing Form IT-10B (Section 166)
+Filing the Statement of Assets, Liabilities and Life Style (Form IT-10B) is legally mandatory if the taxpayer:
+1. Possesses gross assets exceeding **BDT 50,00,000 (50 Lakh)**; OR
+2. Owns a motor vehicle (car, jeep, microbus); OR
+3. Owns a house property or apartment in a City Corporation area; OR
+4. Holds shares or a directorship in a limited company; OR
+5. Incurred international travel expenses.
+
+* **Voluntary Submission for Youth:** If a student or intern has wealth under BDT 50 Lakh, filing IT-10B is voluntary. However, **voluntary submission is strongly recommended** because it creates an unbroken, legal baseline of wealth. Future asset accumulations (buying land, vehicles, or mutual funds) can then be justified by past savings without triggering audit scrutiny.
+
+### 6.2 The Zero-Difference Statutory Balance Sheet Equation
+Under the NBR eReturn System User Manual (Pages 61–62) and standard accounting practice under ITA 2023, the balance sheet must balance to zero:
+
+$$\text{Difference} = \text{Total Fund Outflow} - \text{Total Source of Fund} \equiv \mathbf{0.00}$$
+
+Where:
+1. $\Delta W = \text{Closing Net Wealth (Line 3)} - \text{Opening Net Wealth (Line 4)}$
+2. $\text{Total Fund Outflow} = \Delta W + \text{Form IT-10BB Living Expenses} + \text{Other Outflows (Gifts Given)}$
+3. $\text{Total Source of Fund} = \text{Taxable Income} + \text{Exempt Stipends} + \text{Other Receipts}$
+4. **The Balancing Parental Support Equation:**
+   $$\text{Declared Parental Support} = \text{Total Fund Outflow} - (\text{Taxable Income} + \text{Exempt Stipends})$$
+
+### 6.3 Asset Valuation Rules
+* **Financial Assets:** Declared at **historic acquisition cost**, NOT current market valuation or Net Asset Value (NAV).
+* **Gifted or Inherited Gold (Manual Page 51):** Declared in weight (Bhori/Grams). If acquired as a gift or inheritance with unknown historical cost, NBR official rules explicitly permit entering the monetary value as **`0`**.
+* **Personal Effects:** Used laptops, smartphones, and clothing under BDT 50,000 bought in prior years need not be declared as new asset additions, avoiding artificial cash outflow distortion.
+
+---
+
+## Part VII: Universal Self-Assessment & Audit Defense (Sections 180, 182, 183)
+
+### 7.1 Universal Self-Assessment (Section 180)
+All online returns submitted via `etaxnbr.gov.bd` are legally processed under **Universal Self-Assessment (সার্বজনীন স্বনির্ধারণী পদ্ধতি - Section 180)**:
+* The acknowledgement receipt generated by the system is deemed to be an assessment order passed by the DCT on the date of submission.
+* The taxpayer is immediately issued the **Proof of Submission of Return (PSR)** required under Section 264 for opening bank accounts, taking loans, obtaining credit cards, and 43+ civic services.
+
+### 7.2 Selection for Audit (Section 182)
+The NBR Central Board may select a return for audit using automated risk parameters (e.g., mismatch between banking data and declared income). If selected:
+* The DCT must issue a formal written notice specifying the inquiries.
+* The DCT **cannot arbitrarily reject** documented parental support under Section 56(g) or statutory salary exemptions under Section 32.
+* The taxpayer has the right to present their indexed dossier.
+
+### 7.3 Statutory Audit Defense Dossier (6-Year Retention Rule)
+Under Sections 182 and 183, the statute of limitations allows audits within six (6) years of submission. The taxpayer must preserve:
+1. **Full-year bank statements** (annotated for family transfers and team disbursements).
+2. **Bank and dividend withholding certificates** showing interest, fees, and TDS deducted.
+3. **Signed broker portfolio statements** showing 30 June share holdings at cost.
+4. **Mutual fund and P2P tax certificates** documenting cost and profits.
+5. **Academic fee clearance records** and university ID (Sixth Schedule, Part 1, Para 8).
+6. **Parental confirmation letter:** A simple signed declaration from father/mother stating that they provided living and educational maintenance during the income year under Section 56(g).
+7. **Official PSR & Submitted Form IT-11GA** downloaded from `etaxnbr.gov.bd`.
+
+
+---
+
+## PART 4: ZERO-DIFFERENCE BALANCE SHEET RECONCILIATION (IT-10B)
+
+# Assets & Liabilities (IT-10B) & Zero-Difference Reconciliation (Chapter 5)
+
+*Extracted and formatted directly from NBR Official User Manual (Pages 48 to 62)*
+
+---
+
+
+### [Page 48]
+
+5. Assets & Liabilities 
+5.1. What’s in this Chapter? 
+ Figure 43: Assets &n Liabilities- 1st page
+
+
+### [Page 49]
+
+5.2. Capturing assets and liabilities 
+5.2.1. Description of Above Screen: 
+Assets & Liabilities: 
+1. Assets: An asset is a resource with a monetary value that a person, business owns or 
+manages with the hope that it will bring benefits in the future . For example, Business 
+capital, Land, House, Vehicle, Household items, Jewelry, any kind of Savings money 
+(Sanchayapatra, FDR, DPS, Life insurance etc.), Cash in hand, Cash at bank or Card. 
+ 
+2. Liabilities (outside business): A liability is something a person owes, usually a sum of 
+money. Liabilities are settled over time through the transfer of economic benefits including 
+money, goods, or services. Loan from bank or any other sum of money that you owe 
+someone else is liability. If you have promised to pay someone a sum of money in the future 
+and haven’t paid them yet that’s a liability. 
+ 
+3. Other outflow: Annual Living Expense (in the expenditure IT-10BB part we have calculated 
+the annual expense 2,74,264 taka which amount will be shown here automatically), Loss, 
+Deduction, Gift, Donation, Contribution is the part of this section. 
+ 
+4. Source of Fund: This is the part of Income, all the sources that you have shown income 
+from, will automatically show here. Source of fund has three sections here. In this return 
+the taxpayer has two sources of income, 1) taxable income (5,06,640 taka) from salary and 
+2) taxable income (9,500) taka from interest on securities that is Sanchayapatra. The sum 
+of 1 and 2 (5,06,640 + 9,500) = 5,16,140 is showing in Source of fund > Income Showing in 
+the return section. 
+ 
+5. Net Wealth of Previous Income Year: The value of the assets a person or corporation owns, 
+minus the liabilities they owe is called net wealth, that is (Assets-Liabilities=Net Wealth). If 
+the taxpayer has filed the return in the previous year, the figure that was in the ‘Net 
+Wealth’ column will be placed here. If this is his first return to be submitted, then zero will 
+sit in this cell. 
+ 
+6. Summary: Whatever we earn in a financial year, we spend and save and accumulate 
+wealth, i.e., Income = Expenditure + Assets. Taxpayer income on this return made 7,17,500 
+taka and his expenses and assets are 7,17,500 Taka, The difference between these two is 
+zero, if it is zero then your return is correct , otherwise the return should be checked 
+properly where the mistake is made.
+
+
+### [Page 50]
+
+5.3. Assets 
+ 
+If, a) The total assets as on the last date of the income year exceed Tk.40 lakhs, or 
+b) Owns a motor vehicle (including jeep or microbus) or 
+c) Owns or Invests in any house property or apartment in a city corporation area, 
+In that case the statement of assets has to be filed along with the income tax return. 
+ 
+5.3.1. Description of Above Screen: 
+1. Business Capital - (a) Closing balance: If the taxpayer has income from ‘Sole 
+Proprietorship’ business or profession, the amount of closing capital of that business or 
+profession should be shown here. (b) Directors’ shareholdings in Limited Companies: If the 
+taxpayer is a shareholder director of the company, the details of share ownership should 
+be recorded here, such as name of the companies, number of shares. 
+Figure 44: Assets 1st page- 9 types of Assets.
+
+
+### [Page 51]
+
+2. Non-Agricultural Property: If the taxpayer has non -agricultural property such as 
+residential or commercial plot, house, apartment, etc., details of the property's 
+description, value, etc. should be given in this section. For example: If someone buys a 
+residential plot in installments, he has to show the a) down payment and installment 
+amount before and b) total installment amount for this year. 
+ 
+3. Agricultural Property: If the taxpayer owns agricultural property, then he has to show in 
+this section details, such as - Description and Location, whether the property was 
+purchased by him or inherited or received as a gift and the amount of land etc. 
+ 
+4. Financial Asset: Financial assets of the taxpayer such as Shares, Debentures, Savings 
+certificates (Sanchayapatra), Bonds and other securities, Fixed Deposits (FDR), Savings 
+Pension Schemes (DPS), Lending (Loan given to others) and any other financial assets 
+should be given in this section. 
+ 
+5. Motor Car: If the taxpayer has a private motor vehicle - Jeep or Microbus, its value, 
+registration, and incidental expenses should be entered in this section. If there is more 
+than one vehicle, then the sum of each should be given. 
+ 
+6. Gold, Diamond, Gems and Other Items: If the taxpayer has any ornaments including Gold, 
+Diamonds, Gems or precious stones then the details should be mentioned here. In the 
+case of gifts, since the value is not known, the value can be given as zero. 
+ 
+7. Furniture, Equipment and Electronic Items: Furniture (Beds, Tables, Chairs, Sofa etc.) 
+Equipment (Refrigerator, washing machine, cooking stove etc.), Electronic (TV, 
+Computer, Laptop, Mobile etc.) should be recorded in this section. 
+ 
+8. Other Assets of Significant Value: In addition, if the taxpayer has any other valuable 
+property other than the property mentioned in serial number 1 to 7, its information 
+should be provided in this serial. 
+ 
+9. Cash and Fund outside Business: Cash, bank, card or electronic money balances, 
+provident fund balances and other deposits, balances or advances other than those 
+mentioned in column 4 should be shown in this section.
+
+
+### [Page 52]
+
+The following screen showing the Serial no. 2 (Non-Agricultural Property): 
+ 
+The assets of this taxpayer are given below: 
+• Apartment House – 1200 squire feet, present value is 20,00000 Taka. 
+ 
+5.3.2. Description of above asset as follows: 
+Non-Agricultural Property is a Flat, Enter the information of Flat as below 
+ 
+1. Description and Location: Maradia, Dhaka 
+2. Types of Acquisition: Purchased 
+3. Area of the property: 1200 
+4. Unit: Squire feet 
+5. Value at the start of income year: 20,00,000 
+6. Value at the end of income year: 20,00,000 
+(1) 
+(2) 
+(3) 
+(Asset-1) 
+Figure 45: Assets-Non-Agricultural Property (Flat)
+
+
+### [Page 53]
+
+The following screen showing the Serial no. 4 (Financial Asset) 
+The taxpayer has three types of financial assets: 
+• Savings Certificate – Sanchayapatra 
+• Deposit Pension Scheme – DPS 
+• Other Financial Asset – Life Insurance 
+ 
+5.3.3. Description of Above Screen: 
+4. Financial Asset (5 categories of financial asset) 
+1. Share, Debenture etc.: Share- If you have share business in Share market then give the 
+information here, 1. BO account no 2. Type of acquisition (Purchase or Inherited or Gift) 3. Name 
+of the brokerage house 4. Cost value 
+ 
+ 
+ 
+ 
+ 
+(4) 
+(Asset-2) 
+(Asset-3) 
+(Asset-4) 
+Figure 46: Assets-Financial Assets (Sanchayapatra, DPS, Life insurance) 
+Figure 47: Financial Asset-Share, Debenture
+
+
+### [Page 54]
+
+2. Saving certificate, Bonds, and other Government Securities: Saving certificate is 
+‘Sanchayapatra’, if you have Bonds or any other securities give that information. In the Value 
+column, you have to enter the amount of money you have purchased. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+3. Fixed Deposit, Term Deposit and DPS: If you have Fixed Deposit-FDR, Term Deposit and DPS 
+give the information here. If you have more than one, then click on ‘Add’ button right side of the 
+screen. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+4. Loans Given to others: If you have given loan to other person, then fill the information of that 
+person 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+5. Other Financial Assets: In this field we will give information of “Life insurance”. In the amount 
+field 34,000 taka is the amount of deposited in the financial year. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 48: Financial Assets-Sanchayapatra 
+Figure 49: Financial Assets-DPS 
+Figure 50: Financial Assets- Loan given to others 
+Figure 51:Financial Assets-Other financial Assets (Sanchayapatra)
+
+
+### [Page 55]
+
+The taxpayer has no vehicle 
+ 
+The following screen showing the Serial no. 6 and 7 of Assets 
+The Taxpayer has asset of 10 Bhori Gold which he got as gift, since it is gifted then the value you 
+can show zero. The taxpayer has furniture, equipment, and electronic item as asset which he 
+purchased and the value we have shown here. 
+ 
+ 
+(5) 
+(Asset-5) 
+(Asset-6) 
+(Asset-7) 
+(6) 
+(7) 
+Figure 52: Assets-Motor Car 
+Figure 53: Assets-Gold, Diamond, Gems and Other items (Gold), Assets-Furniture, Equipment and Electronic Items (TV, Mobile, Furniture)
+
+
+### [Page 56]
+
+The following screen showing the Serial no. 9 Assets 
+The last date of financial year taxpayer has asset of taka as cash 1,20,236 
+Click on the Other Deposit, Balance and Advance and enter the following information in the 
+Particulars field type ‘Cash in Hand’ and in the Balance Amount field type 1,20,236. 
+ 
+5.3.4. Description of asset ‘Cash and Fund outside Business’: 
+Actually, the total amount you have Earned in the income year from Salary and investment 
+(Sanchayapatra), You spent the whole year from that money as family Expenses and bought some 
+Assets with the remaining money. You have the remaining amount as Cash in Hand (1,20,236), 
+which we have shown balance amount field. 
+Assets - at a Glance: 
+SL No Particulars Amount 
+1 Business Capital 0 
+2 Non-Agricultural Property (Flat) 20,00,000 
+3 Financial Asset: 
+ 1. Share, Debenture etc 0 
+2. Life Insurance 1,00,000 
+3. DPS 72,000 
+4. Loans Given to others 0 
+ 5. Sanchayapatra 34,000 
+4 Total Financial Assets: 2,06,000 
+5 Motor Car 0 
+6 Gold, diamond, Gems 0 
+7 Furniture, Equipment and Electronics (52,000+30,000+35,000) 1,17000 
+8 Cash and fund Outside Business 1,20,236 
+ Total Assets (Sum of SL No. 1 to 7): 23,23,000 
+Table 2: Total Assets at a Glance 
+(9) 
+(Asset-8) 
+Figure 54: Financial Assets-Cash and Fund outside Business (Cash)
+
+
+### [Page 57]
+
+5.4. Liabilities 
+ 
+Apart from business, if the taxpayer has taken any personal bank loan or loan from any 
+person or institution, it should be mentioned here. The taxpayer taken a loan from “Delta 
+Brac Housing Limited of taka 20,00,000. 
+ 
+ 
+Note: The above liability no. 2. Unsecured Loan and 3. Other Loan or Overdraft shown as an 
+example, the taxpayer has no such liability. 
+5.4.1. Description of Above Screen: (3 items in this section) 
+1. Borrowing from Bank or Other FI: Taking money from a bank or other FI and paying it back 
+over a period of time. A Financial Institute (FI) is a company engaged in the business of dealing 
+with financial and monetary transactions such as deposits, loans, investments, and currency 
+exchange. The amount 20,00,000 taka showing above screen in the Balance Amount field is the 
+amount that the taxpayer taken loan of a Financial Institute named “Delta Brac Housing Limited”. 
+ 
+2. Unsecured Loan: An unsecured loan is a loan that doesn't require any type of surety or security. 
+Instead of relying on a borrower's assets as security, lenders approve unsecured loans based on a 
+borrower’s creditworthiness. Unsecured loans include personal loans, student loans, and most 
+credit cards. 
+(2) 
+Figure 55: Liabilities - Outside Business
+
+
+### [Page 58]
+
+Note: The taxpayer has no Unsecured loan, this is shown as an example 
+3. Other Loan or Overdraft: An overdraft is like any other loan: An overdraft occurs when there 
+isn’t enough money in an account to cover a transaction or withdrawal, but the bank allows the 
+transaction anyway. The account holder pays interest on it. An overdraft is a facility that can be 
+part of the current account of business. 
+ 
+Note: The taxpayer has no Other Loan or Overdraft, this is shown as an example. 
+ 
+5.5. Other Outflow 
+In this option will show main “Expense” and other expense. The expenses incurred by the 
+taxpayer in the income year have been described in the previous expenses section, here 
+those expenses will come automatically. 
+ 
+Figure 56: Liabilities-Liabilities (Outside Business)-Unsecured Loan 
+Figure 57:Liabilities-Liabilities (Outside Business)-Other Loan or Overdraft 
+Figure 58: Assets & Liability-Other Outflow (Expense)
+
+
+### [Page 59]
+
+5.5.1. Description of above screen: 
+ 
+1. Annual Living Expense: 
+The amount is showing from Expenditure (Total Expense Relating to Lifestyle) Part. 
+ 
+2. Loss, Deduction, Other Expense: 
+Loss- You sold your personal car at a lower than purchase price or you may have realized loss in 
+share transfer. 
+Deduction- All deductions and charges for example Bank charge and interest, BO account fees 
+and charge. 
+Other Expense-All expenses for example special charitable or humanitarian expenses that are 
+not covered in annual living expense. 
+ 
+3. Gift, Donation and Contribution: In these three cases, Gift, Donation, Contribution, you 
+either decrease the asset or increase the liability, so all the expenses incurred in all such cases 
+should be shown here. 
+ 
+5.6. Source of Fund 
+The “Income” from the source shown by the taxpayer in this return will automatically come 
+here. Here the taxable income and tax exempted income will be shown. 
+ 
+ Figure 59: Assets & Liabilities-Source of Fund (Income)
+
+
+### [Page 60]
+
+5.6.1. Description of Above Screen: 
+1. Income Shown in the Return: This taxpayer has two income sources, 1. Salaries, 2. Income 
+from Securities-“Sanchayapatra”. From salary Taxable income is (Basic: 4,16,040 + Festival 
+Allowance: 84,000 + Entertainment Allowance: 6,600 = 5,06,640 and from Sanchayapatra Taxable 
+income is 9,500. Therefore, Total Taxable income from Salary and Sanchayapatra is (5,06,640 + 
+9,500) = 5,16,140, which is showing in this field. 
+ 
+2. Tax Exempted Income and Allowance: From Salary part Tax Exempted income is House rent 
+allowance + Medical allowance + Conveyance allowance = (1,74,960 + 12,600 + 13,800) = 2,01,360 
+which is showing in this field. 
+ 
+3. Other Receipts: If you receive money as gift from your Spouse, this will be treated as Other 
+Receipts. 
+ 
+ 
+Note: The taxpayer has no Other Receipt, this is shown as an example. 
+5.7. Net Wealth of Previous Income Year 
+The value of the assets a person or corporation owns, minus the liabilities they owe is called net 
+wealth, that is (Assets-Liabilities=Net Wealth). If the taxpayer has filed the return in the previous 
+year, the figure that was in the ‘Net Wealth’ column will be placed here. If this is his first return to 
+be submitted, then zero will sit in this cell. 
+ 
+Figure 60: Assets & Liabilities-Source of Fund (Income from other Receipt) 
+Figure 61: Assets & Liabilities-Net wealth of Previous Income Year
+
+
+### [Page 61]
+
+5.7.1. Description of Above Screen: 
+Net Wealth of Previous income Year: This is the first return filed by this taxpayer, so zero should 
+be placed in this box, but in the next year when the return is prepared then this year's t Net Wealth 
+will be filled in this box. 
+ 
+5.8. Summary of Assets & Liabilities 
+ 
+Assets and Liabilities at a Glance: 
+SL No. Particulars Amount 
+1 Gross Wealth 24,43,236 
+2 Total Liabilities Outside Business 20,00,000 
+3 Net Wealth 4,43,236 
+4 Net Wealth at the Last date of previous Income Year 0 
+5 Change in Net Wealth 4,43,236 
+6 Other Fund Outflow During Income Year 2,74,236 
+7 Total fund Outflow 7,17,500 
+8 Source of Fund 7,17,500 
+9 Difference (difference between SL No. 7 and 8) 0 
+Table 3: Asset and Liability at a Glance 
+Figure 62: Assets & Liabilities-Summary of Assets & Liabilities
+
+
+### [Page 62]
+
+5.8.1. Description of Above Screen: 
+Particulars 
+1. Gross Wealth: Gross wealth is the Total amount of Assets held by a household. It includes real 
+estate, financial assets, durable goods (cars, household equipment, etc.), jewellery, Cash. In Asset 
+part from (Asset-1)=20,00000, (Asset-2)=1,00000, (Asset-3)=72,000, (Asset-4)=34,000, (Asset-
+5)=52,000, (Asset-6)=30,000, (Asset-7)= 35,000, (Asset-8)=1,20,236. The summation of Asset-1, 
+Asset-2, Asset-3, Asset-4, Asset-5, Asset-6, Asset-7, Asset-8 is 24,43,236 is showing in this field. 
+ 
+ 
+ 
+In the Assessment section we have selected No option hare because the taxpayer Gross wealth 
+is 24,43,236 which is less than 40,00,000. If any taxpayer’s Gross wealth over 40,00,000 then he 
+has to Select Yes option. 
+2. Total Liabilities Outside Business: The taxpayer taken a Loan of Tk. 20,00000, this loan is his 
+liability and showing in this field. 
+ 
+3. Net Wealth: Net wealth is Total Asset-Total Liability. In above screen Serial no. 1 - Serial no. 2 
+= Net Wealth, 24,43,236-20,00000= 443,236 which is showing in this field. 
+ 
+4. Net Wealth at the Last Date of Previous Income Year: As the taxpayer is filling return first 
+time, this field value will be Zero. 
+ 
+5. Change in Net Wealth: Difference between Serial no.3 and Serial no.4, that is 443,236 – 0 = 
+4,43,236 showing in this field. 
+ 
+6. Other Fund Outflow During Income Year: This amount 2,74,264 comes from Chapter 4.4 
+Other outflow. 
+ 
+7. Total Fund Outflow: By adding Serial no. 5 (Asset) and Serial no. 6 (Expense) , that is (4,43,236 
++ 2,74,264)= 7,17,500 is the total fund outflow. 
+ 
+8. Source of Fund: From Chapter “4.5 Source of fund” 5,16,140 + 2,01,360 = 7,17,500 
+ 
+9. Difference: Difference between Serial no. 7 and Serial no. 8, that is 7,17,500 - 7,17,500 = 0, if 
+the difference is zero then the return is correct, if not zero you have to check the return. 
+Figure 63: Assets & Liabilities-IT-10B Requirements

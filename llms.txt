@@ -1,0 +1,51 @@
+# Bangladesh Youth Tax Calculator (`youth-tax-calculator`)
+
+> Complete statutory tax filing skill and deterministic calculation engine for Bangladeshi students, interns, fresh graduates, and first-time employees filing on the NBR e-Return portal (etaxnbr.gov.bd) under the Income Tax Act 2023.
+
+## Core Rules and Statutory Baselines
+
+- Tax-Free Threshold: 350,000 BDT (General) / 400,000 BDT (Female and 65+) / 475,000 BDT (Disabled).
+- Zero Tax and TDS Refund: If taxable income <= 350,000 BDT, tax payable is strictly 0 BDT. Minimum tax never applies. 100% of bank TDS is refundable.
+- Salary Exemption (Section 32): Lower of 1/3rd gross salary or 450,000 BDT is automatically exempt.
+- Educational Stipends (Sixth Schedule, Part 1, Paragraph 8): 100% tax-free. Declared under Tax Exempted Income.
+- Family Support (Section 56g): Money from parents or spouse is non-taxable capital receipt. Enter under IT-10B Source of Fund > Other Receipts.
+- Capital Losses (Section 70): Stock market losses carry forward for up to 6 consecutive years.
+- Zero-Difference Balance Sheet: Form IT-10B requires Total Outflow == Total Source of Funds (Difference = 0.00). Parental Support covers the living expense shortfall.
+- Deterministic Math: LLMs must never use next-token arithmetic for multi-line balance sheets. Always run calculator.py.
+
+## Main Skill File
+
+- [SKILL.md](skills/youth-tax-calculator/SKILL.md): Complete system prompt, agent instructions, screen-by-screen NBR portal workflows, edge-case handling, and audit defense dossier.
+
+## Deterministic Execution Engine
+
+- [calculator.py](calculator.py): Python calculation engine and CLI wizard. Solves tax slabs, rebates, bank TDS refunds, and IT-10B zero-difference math. Supports interactive prompts, CLI flags, and --output-json.
+
+## Statutory Codex and Reference Documentation
+
+- [Statutory Tax Law Codex](skills/youth-tax-calculator/references/07_statutory_tax_law_codex.md): Deep legal analysis of Income Tax Act 2023 (Sections 30, 32, 35, 38, 56g, 57, 70, 163, 180, 264) and S.R.O. frameworks.
+- [e-TIN and Portal Registration](skills/youth-tax-calculator/references/01_getting_started_and_registration.md): Biometric SIM verification, e-TIN setup, and first-time login on etaxnbr.gov.bd.
+- [Income Heads and Exemptions](skills/youth-tax-calculator/references/02_assessment_and_income_heads.md): Screen 1 and Screen 3 field entries for salaries, scholarships, financial assets, and capital gains.
+- [Investment Rebates and Living Costs](skills/youth-tax-calculator/references/03_rebate_and_living_expenses.md): Schedule 5 mutual fund rebates and Form IT-10BB living expense schedules.
+- [Assets, Liabilities and IT-10B Math](skills/youth-tax-calculator/references/04_assets_and_liabilities_it10b.md): Balance sheet reconciliation, opening wealth, and solving for Difference = 0.00.
+- [Tax Slabs and Minimum Tax Rules](skills/youth-tax-calculator/references/05_tax_computation_and_payment.md): Progressive slabs, city corporation minimum tax floor conditions, and A-Challan payment.
+- [Return Submission and Verification](skills/youth-tax-calculator/references/06_return_submission_and_tax_records.md): 14-page PDF review, OTP SMS verification, and PSR / Tax Certificate download.
+
+## CLI Quick Reference
+
+```bash
+# Interactive wizard
+python calculator.py
+
+# Direct calculation
+python calculator.py --salary 35000 --stipend 18000 --interest 228 --bank-tds 31 --bank-balance 34908 --capital-gain 896 --capital-loss 3924 --mutual-funds 28956 --expenses 170000 --opening-wealth 56759
+
+# JSON output for automated tool calling
+python calculator.py --salary 35000 --expenses 170000 --output-json
+```
+
+## Raw Links for AI Ingestion
+
+- Full Skill: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/skills/youth-tax-calculator/SKILL.md
+- Law Codex: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/skills/youth-tax-calculator/references/07_statutory_tax_law_codex.md
+- Python Engine: https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/calculator.py

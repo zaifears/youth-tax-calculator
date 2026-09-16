@@ -5,20 +5,16 @@ A tax calculator and filing assistant for Bangladeshi students, interns, fresh g
 ---
 
 ## Table of Contents
-- [TL;DR](#tldr)
-- [How It Works (Visual Guide)](#how-it-works-visual-guide)
-  - [1. Income Flow and Tax Calculation](#1-income-flow-and-tax-calculation)
-  - [2. The Zero-Difference Balance Sheet](#2-the-zero-difference-balance-sheet)
-- [How to Use](#how-to-use)
-  - [Method 1: Interactive Terminal Wizard](#method-1-interactive-terminal-wizard)
-  - [Method 2: One-Line CLI Flags](#method-2-one-line-cli-flags)
-  - [Method 3: As an AI Agent Skill](#method-3-as-an-ai-agent-skill)
-- [Technical Details and Architecture](#technical-details-and-architecture)
-  - [Statutory Rules (Income Tax Act 2023)](#statutory-rules-income-tax-act-2023)
-  - [Why We Use Deterministic Python](#why-we-use-deterministic-python)
-  - [Portal UI Traps and How We Handle Them](#portal-ui-traps-and-how-we-handle-them)
-- [Project Structure](#project-structure)
-- [License and Disclaimer](#license-and-disclaimer)
+
+| Jump To | What It Covers |
+| :--- | :--- |
+| [TL;DR](#tldr) | Fast summary: 0 BDT tax, TDS refund, zero difference |
+| [Visual Guide & Flowcharts](#how-it-works-visual-guide) | Flowcharts for income flow and balance sheet math |
+| [How to Use](#how-to-use) | AI Skill (Primary), interactive wizard, and CLI flags |
+| [For LLMs and Web Crawlers](#for-llms-and-web-crawlers) | Direct context endpoints and llms.txt standard |
+| [Technical Details and Architecture](#technical-details-and-architecture) | Income Tax Act 2023 rules and portal quirks |
+| [Project Structure](#project-structure) | Repository layout, context files, and guides |
+| [License and Disclaimer](#license-and-disclaimer) | Legal disclaimer and MIT license |
 
 ---
 
@@ -26,9 +22,9 @@ A tax calculator and filing assistant for Bangladeshi students, interns, fresh g
 
 If you are a student, intern, or fresh graduate in Bangladesh, your tax return on `etaxnbr.gov.bd` should almost always result in **0 BDT tax payable**, and any bank source tax (TDS) deducted should be **refunded to you**.
 
-This project provides two things:
-1. **A standalone Python engine (`calculator.py`):** Calculates your exact numbers, applies statutory deductions, and solves the balance sheet formula so your portal form has a difference of exactly 0.00.
-2. **An AI Skill / Assistant:** Guides you screen-by-screen through the NBR portal, warns you about hidden buttons, and gives you the exact legal section for every number you enter.
+This project is an **AI Agent Skill first**, backed by a deterministic Python engine:
+1. **The AI Skill (`skills/youth-tax-calculator`):** The primary brain. You give your AI assistant the rules, laws, and screen-by-screen guidance so it can guide you through every screen of `etaxnbr.gov.bd` with zero hallucinations.
+2. **The Python Engine (`calculator.py`):** An added tool that the AI (or you) runs to solve the exact arithmetic and balance sheet math.
 
 ---
 
@@ -79,38 +75,11 @@ flowchart LR
 
 ## How to Use
 
-### Method 1: Interactive Terminal Wizard
+### Method 1: As an AI Agent Skill (Recommended)
 
-No coding knowledge required. Open PowerShell or Terminal and run:
+This project is built primarily as an AI Agent Skill. LLMs are good at explaining legal sections, but they can make silly arithmetic mistakes when adding up multi-line balance sheets. 
 
-```bash
-python calculator.py
-```
-
-It will ask you a series of questions:
-* Your name, category, and city location
-* Gross salary or internship stipends
-* University scholarships
-* Bank interest and bank TDS
-* Stock gains or losses
-* Approximate living expenses (food, transport, education)
-* Opening wealth from last year (enter 0 if first time)
-
-When finished, it prints a clean breakdown table and tells you the exact number to enter under **Other Receipts** so your portal shows `Difference = 0.00`.
-
-### Method 2: One-Line CLI Flags
-
-If you already know your figures, you can pass them directly:
-
-```bash
-python calculator.py --salary 35000 --stipend 18000 --interest 228 --bank-tds 31 --bank-balance 34908 --capital-gain 896 --capital-loss 3924 --mutual-funds 28956 --expenses 170000 --opening-wealth 56759
-```
-
-Add `--output-json` to get raw JSON for scripts or APIs.
-
-### Method 3: As an AI Agent Skill
-
-If you use Antigravity, Claude Code, Cursor, or ChatGPT, you can install this skill globally so your AI assistant knows Bangladesh tax law automatically.
+By installing this skill, your AI gets the complete screen-by-screen e-Return playbook, cites the Income Tax Act 2023 for every line, and calls the Python engine behind the scenes to do the math.
 
 #### One-Click Install:
 * **Windows (PowerShell):**
@@ -123,8 +92,58 @@ If you use Antigravity, Claude Code, Cursor, or ChatGPT, you can install this sk
   ```
 
 Once installed, simply ask your AI:
-* *"I am a university student in Bangladesh with an internship, walk me through my tax return on etaxnbr.gov.bd"*
-* *"Calculate my parental support figure so my IT-10B difference is 0.00"*
+* "I am a university student in Bangladesh with an internship, walk me through my tax return on etaxnbr.gov.bd"
+* "Calculate my parental support figure so my IT-10B difference is 0.00"
+
+### Method 2: Interactive Terminal Wizard
+
+If you prefer not using an AI assistant and just want to crunch the numbers yourself, run the standalone Python wizard:
+
+```bash
+python calculator.py
+```
+
+It will ask you a series of simple questions:
+* Your name, category, and city location
+* Gross salary or internship stipends
+* University scholarships
+* Bank interest and bank TDS
+* Stock gains or losses
+* Approximate living expenses (food, transport, education)
+* Opening wealth from last year (enter 0 if first time)
+
+When finished, it prints a clean breakdown table and tells you the exact number to enter under **Other Receipts** so your portal shows `Difference = 0.00`.
+
+### Method 3: One-Line CLI Flags
+
+If you already know your figures, you can pass them directly via command line flags:
+
+```bash
+python calculator.py --salary 35000 --stipend 18000 --interest 228 --bank-tds 31 --bank-balance 34908 --capital-gain 896 --capital-loss 3924 --mutual-funds 28956 --expenses 170000 --opening-wealth 56759
+```
+
+Add `--output-json` to get raw JSON for scripts or APIs.
+
+---
+
+## For LLMs and Web Crawlers
+
+This repository is optimized for autonomous coding agents, LLMs, and legal search crawlers (Claude, Cursor, Copilot, ChatGPT, Gemini, Perplexity).
+
+### Machine-Readable Endpoints
+
+* **`/llms.txt`**: Standard manifest following the [llmstxt.org](https://llmstxt.org) specification. Contains project rules, file paths, and quick commands.
+* **`/llms-full.txt`**: Complete single-file context bundle containing the skill prompt, statutory tax law codex, balance sheet math, and CLI docs. Ideal for one-shot ingestion without crawling multiple files.
+
+### How to Feed This Repo to Your AI
+
+* **In Cursor:** Add `https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/llms.txt` to your `@Docs` index.
+* **In Claude Code or CLI Agents:** Run:
+  ```bash
+  curl -s https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/llms-full.txt > tax_context.md
+  ```
+* **In Web LLMs (ChatGPT / Claude / Gemini):** Paste the raw link to `SKILL.md`:
+  `https://raw.githubusercontent.com/zaifears/youth-tax-calculator/main/skills/youth-tax-calculator/SKILL.md`
 
 ---
 
@@ -140,7 +159,7 @@ Once installed, simply ask your AI:
 
 ### Why We Use Deterministic Python
 
-Language models (including Claude and GPT-4) are good at explaining laws, but they can make small arithmetic mistakes when adding up multi-line balance sheets. 
+Language models are good at explaining laws, but they can make small arithmetic mistakes when adding up multi-line balance sheets. 
 
 To prevent this:
 * All calculations (slabs, exemptions, rebates, and balance sheet reconciliation) run inside `calculator.py`.
@@ -151,7 +170,7 @@ To prevent this:
 The NBR portal (`etaxnbr.gov.bd`) has a few quirks that confuse first-time filers:
 1. **The Hidden Exemption Tab:** On Screen 1, you must select "Yes" for "Any income which is fully exempted from tax?". If you leave it as "No", the portal completely hides the tab where you declare student stipends.
 2. **The Green Checkmark (✓):** In Capital Gains and Financial Assets dropdowns, selecting an item shows a small green tick button next to it. You must click that tick mark, or the input fields will not appear on screen.
-3. **The Section 70 PDF Glitch:** On the final 14-page PDF return, Line 7 Gross Wealth will look smaller than Line 10 Total Assets by the exact amount of your carried-forward stock loss. This is a known reporting artifact in NBR's software, not an error on your part.
+3. **The Section 70 PDF Glitch:** On the final 14-page PDF return, Line 7 Gross Wealth will look smaller than Line 10 Total Assets by the exact amount of your carried-forward stock loss. This is a known reporting artifact in NBR software, not an error on your part.
 
 ---
 
@@ -162,16 +181,18 @@ youth-tax-calculator/
 ├── calculator.py                                      # Standalone Python tax engine
 ├── install.ps1                                        # 1-click installer for Windows
 ├── install.sh                                         # 1-click installer for macOS/Linux
+├── llms.txt                                           # Machine-readable standard index for LLMs
+├── llms-full.txt                                      # Single-file bundled context for AI crawlers
 ├── README.md                                          # This guide
 └── skills/youth-tax-calculator/
-    ├── SKILL.md                                       # Full AI prompt & agent protocol
+    ├── SKILL.md                                       # Full AI prompt and agent protocol
     └── references/
-        ├── 01_getting_started_and_registration.md     # e-TIN & portal login
+        ├── 01_getting_started_and_registration.md     # e-TIN and portal login
         ├── 02_assessment_and_income_heads.md          # Salaries, capital gains, stipends
-        ├── 03_rebate_and_living_expenses.md           # Schedule 5 & IT-10BB
-        ├── 04_assets_and_liabilities_it10b.md         # Balance sheet & zero-difference math
-        ├── 05_tax_computation_and_payment.md         # Slabs, rebates & minimum tax rules
-        ├── 06_return_submission_and_tax_records.md    # OTP submission & PSR download
+        ├── 03_rebate_and_living_expenses.md           # Schedule 5 and IT-10BB
+        ├── 04_assets_and_liabilities_it10b.md         # Balance sheet and zero-difference math
+        ├── 05_tax_computation_and_payment.md         # Slabs, rebates and minimum tax rules
+        ├── 06_return_submission_and_tax_records.md    # OTP submission and PSR download
         ├── 07_statutory_tax_law_codex.md             # Complete legal analysis of ITA 2023
         ├── Special_Registration.pdf                   # Official guide for overseas citizens
         └── UserManualEN.pdf                           # Official 107-page NBR User Manual
