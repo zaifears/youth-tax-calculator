@@ -1,0 +1,11 @@
+# Personal Financial & Tax Documents (DO NOT COMMIT)
+/*.pdf
+/manuals/
+
+# System and Environment files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.vscode/
+.idea/
