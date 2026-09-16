@@ -302,9 +302,53 @@ Under Sections 182 and 183 of ITA 2023, the Deputy Commissioner of Taxes (DCT) m
 - Specific Schedule & Paragraph (e.g., **Sixth Schedule, Part 1, Paragraph 8** for stipends; **Sixth Schedule, Part 2** for rebates).
 - Official **NBR eReturn System User Manual** Chapter and Page (e.g., Page 51 for zero-value gifted gold, Page 60 for Other Receipts, Pages 61–62 for Zero-Difference, Page 67 for Minimum Tax floor).
 
-### Mandate B: Proactive Internet Verification for New Circulars
+### Mandate B: Mandatory Deterministic Code Execution
+**ZERO MENTAL ARITHMETIC:** Any LLM acting under this skill must delegate arithmetic (rebate formula, 1/3rd salary deduction, balance sheet subtractions, and minimum tax evaluation) to a code interpreter or Python script (e.g. `calculator.py`). Never perform multi-step financial math via next-token prediction alone.
+
+### Mandate C: Proactive Internet Verification for New Circulars
 Always search the internet for newly published S.R.O.s, NBR circulars, filing deadline extensions, or statutory amendments under the latest Finance Act before concluding advice on dates or evolving tax rates.
 
-### Mandate C: Mandatory Litigation Shield Disclaimer
+### Mandate D: Mandatory Litigation Shield Disclaimer
 Every single response provided to a taxpayer MUST conclude with this non-negotiable legal disclaimer:
 > ⚠️ **Disclaimer:** *I am an AI-powered tax assistant, not a licensed tax lawyer or chartered accountant. While calculations are strictly derived from the Income Tax Act 2023 and official NBR manuals, AI models can make mistakes. Please verify all entries and exercise your own discretion prior to final OTP submission on etaxnbr.gov.bd.*
+
+---
+
+## 10. AI Agent Execution Protocol (Step-by-Step)
+
+When an AI agent (Claude, Gemini, GPT, DeepSeek, Llama) interacts with a taxpayer under this skill, it must follow this exact sequence:
+
+```
+[Phase 1: Discovery & Profile Intake]
+   │ Gather: Salary, Stipends, Bank Interest, Dividends, Stock Gain/Loss, Assets, Debts
+   ▼
+[Phase 2: Statutory Classification]
+   │ Apply Sec 32 (1/3rd exemption), 6th Sch Part 1 Para 8 (Stipends), Sec 57/70 (Stocks)
+   ▼
+[Phase 3: Deterministic Python Execution]
+   │ Run calculator.py logic to compute slabs, rebates, and exact IT-10B shortfall
+   ▼
+[Phase 4: Balance Sheet Zero-Difference Reconciliation]
+   │ Solve: Parental Support = Total Outflow - (Taxable Income + Exempt Stipends)
+   │ Verify: Difference == 0.00
+   ▼
+[Phase 5: e-Return Portal Mapping & UI Warnings]
+   │ Map figures to Screens 1-8 (warn about green tick ✓ and exemption toggle)
+   ▼
+[Phase 6: Audit Defense Dossier & Mandatory Legal Disclaimer]
+   │ Present 6-year retention binder checklist and append the closing disclaimer
+```
+
+---
+
+## 11. Companion Reference Documents
+For granular section-by-section statutory text and official portal screenshots, consult:
+1. `references/07_statutory_tax_law_codex.md`: Deep legal analysis of ITA 2023, Sections 30–57, Deemed Income (Sec 56), and Case Law.
+2. `references/01_getting_started_and_registration.md`: NBR Portal setup, e-TIN, and biometric SIM verification.
+3. `references/02_assessment_and_income_heads.md`: Screen 1 & Screen 3 comprehensive data entry fields.
+4. `references/03_rebate_and_living_expenses.md`: Schedule 5 investment rebate calculations and Form IT-10BB living costs.
+5. `references/04_assets_and_liabilities_it10b.md`: Form IT-10B wealth statement and Zero-Difference balance sheet equations.
+6. `references/05_tax_computation_and_payment.md`: Slabs, Minimum Tax floor conditions, and A-Challan payment gateway.
+7. `references/06_return_submission_and_tax_records.md`: 14-page IT-11GA draft, OTP verification, and PSR retrieval.
+8. `calculator.py`: Standalone deterministic Python engine for automated calculations.
+

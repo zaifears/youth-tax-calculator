@@ -139,11 +139,18 @@ Once installed, simply chat with Antigravity about your tax filing. The skill au
 
 ---
 
-## 📚 Included Reference Documents
+## 📚 Included Reference Documents & Legal Codex
 
 Inside [`skills/youth-tax-calculator/references/`](skills/youth-tax-calculator/references/):
-1. **`UserManualEN.pdf`**: Official 107-page National Board of Revenue eReturn System User Manual.
-2. **`Special_Registration.pdf`**: Official NBR protocol for expatriate Bangladeshis and overseas students registering via email.
+1. **`07_statutory_tax_law_codex.md`**: Comprehensive substantive legal analysis of the **Income Tax Act 2023 (ITA 2023)**, Section 30 heads, Deemed Income (Section 56), Section 56(g) family gifts, and Section 70 loss carry-forwards.
+2. **`01_getting_started_and_registration.md`**: Official NBR registration, e-TIN setup, and biometric SIM verification.
+3. **`02_assessment_and_income_heads.md`**: Form field breakdown for employment, financial assets, capital gains, and stipends.
+4. **`03_rebate_and_living_expenses.md`**: Schedule 5 investment rebate calculations and Form IT-10BB living costs.
+5. **`04_assets_and_liabilities_it10b.md`**: Form IT-10B wealth statement and Zero-Difference balance sheet equations.
+6. **`05_tax_computation_and_payment.md`**: Slabs, Minimum Tax floor conditions, and A-Challan payment gateway.
+7. **`06_return_submission_and_tax_records.md`**: 14-page IT-11GA draft review, OTP verification, and PSR retrieval.
+8. **`calculator.py`**: Standalone deterministic Python engine for automated calculations.
+9. **`UserManualEN.pdf` & `Special_Registration.pdf`**: Official National Board of Revenue publications.
 
 ---
 
