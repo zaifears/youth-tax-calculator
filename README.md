@@ -173,13 +173,6 @@ To prevent this:
 * All calculations (slabs, exemptions, rebates, and balance sheet reconciliation) run inside `calculator.py`.
 * The AI runs the script, gets exact numbers, and quotes them to you with the relevant section of the law.
 
-### Portal UI Traps and How We Handle Them
-
-The NBR portal (`etaxnbr.gov.bd`) has a few quirks that confuse first-time filers:
-1. **The Hidden Exemption Tab:** On Screen 1, you must select "Yes" for "Any income which is fully exempted from tax?". If you leave it as "No", the portal completely hides the tab where you declare student stipends.
-2. **The Green Checkmark (✓):** In Capital Gains and Financial Assets dropdowns, selecting an item shows a small green tick button next to it. You must click that tick mark, or the input fields will not appear on screen.
-3. **The Section 70 PDF Glitch:** On the final 14-page PDF return, Line 7 Gross Wealth will look smaller than Line 10 Total Assets by the exact amount of your carried-forward stock loss. This is a known reporting artifact in NBR software, not an error on your part.
-
 ---
 
 ## Project Structure
