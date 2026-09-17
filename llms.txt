@@ -4,8 +4,8 @@
 
 ## Core Rules and Statutory Baselines
 
-- Tax-Free Threshold: 350,000 BDT (General) / 400,000 BDT (Female and 65+) / 475,000 BDT (Disabled).
-- Kept at Minimum and TDS Refund: Keeps tax expense at minimum (0 BDT floor for taxable income <= 350,000 BDT). Minimum tax never applies. 100% of bank TDS is refundable.
+- Tax-Free Threshold: 400,000 BDT (General) / 450,000 BDT (Female and 65+) / 525,000 BDT (Disabled and Third Gender) / 550,000 BDT (Gazetted Freedom Fighters).
+- Kept at Minimum and TDS Refund: Keeps tax expense at minimum (0 BDT floor for taxable income <= 400,000 BDT). Minimum tax never applies. 100% of bank TDS is refundable.
 - Salary Exemption (Section 32): Lower of 1/3rd gross salary or 450,000 BDT is automatically exempt.
 - Educational Stipends (Sixth Schedule, Part 1, Paragraph 8): 100% tax-free. Declared under Tax Exempted Income.
 - Family Support (Section 56g): Money from parents or spouse is non-taxable capital receipt. Enter under IT-10B Source of Fund > Other Receipts.

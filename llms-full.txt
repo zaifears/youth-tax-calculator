@@ -10,8 +10,8 @@
 
 ## Core Rules and Statutory Baselines
 
-- Tax-Free Threshold: 350,000 BDT (General) / 400,000 BDT (Female and 65+) / 475,000 BDT (Disabled).
-- Kept at Minimum and TDS Refund: Keeps tax expense at minimum (0 BDT floor for taxable income <= 350,000 BDT). Minimum tax never applies. 100% of bank TDS is refundable.
+- Tax-Free Threshold: 400,000 BDT (General) / 450,000 BDT (Female and 65+) / 525,000 BDT (Disabled and Third Gender) / 550,000 BDT (Gazetted Freedom Fighters).
+- Kept at Minimum and TDS Refund: Keeps tax expense at minimum (0 BDT floor for taxable income <= 400,000 BDT). Minimum tax never applies. 100% of bank TDS is refundable.
 - Salary Exemption (Section 32): Lower of 1/3rd gross salary or 450,000 BDT is automatically exempt.
 - Educational Stipends (Sixth Schedule, Part 1, Paragraph 8): 100% tax-free. Declared under Tax Exempted Income.
 - Family Support (Section 56g): Money from parents or spouse is non-taxable capital receipt. Enter under IT-10B Source of Fund > Other Receipts.
@@ -82,33 +82,31 @@ It synthesizes:
 
 ---
 
-## 2. Statutory Foundations & Current Rates (AY 2026–2027)
+## 2. Statutory Foundations & Current Rates (Per PwC Bangladesh Tax Summary)
 
 ### A. Tax-Free Exemption Ceilings (General & Special)
 | Category | Tax-Free Threshold | Statutory Basis |
 | :--- | :---: | :--- |
-| **General Taxpayers (Male / Young Professionals)** | **BDT 3,50,000 – 4,00,000** | Finance Act Standard |
-| **Female Taxpayers & Senior Citizens (Aged 65+)** | **BDT 4,00,000 – 4,50,000** | Finance Act Standard |
-| **Persons with Disabilities / Third Gender** | **BDT 4,75,000 – 5,25,000** | Finance Act Standard |
-| **Gazetted War-Wounded Freedom Fighters** | **BDT 5,00,000 – 5,50,000** | Finance Act Standard |
+| **General Taxpayers (Male / Resident)** | **BDT 400,000** | Finance Act Standard |
+| **Female Taxpayers & Senior Citizens (Aged 65+)** | **BDT 450,000** | Finance Act Standard |
+| **Persons with Disabilities / Third Gender** | **BDT 525,000** | Finance Act Standard |
+| **Gazetted War-Wounded Freedom Fighters** | **BDT 550,000** | Finance Act Standard |
 | **Parent/Legal Guardian of Disabled Child** | **+ BDT 50,000 per child** | Additional Allowance |
 
 ### B. Progressive Tax Slabs & Rates
 For taxable income exceeding the tax-free threshold:
 | Taxable Income Slab | Tax Rate | Cumulative Max Tax in Slab |
 | :--- | :---: | :---: |
-| **First Tier (Tax-Free Threshold)** | **0%** | BDT 0 |
-| **Next BDT 1,00,000 / 3,00,000** | **5% / 10%** | Slabs per Finance Act |
-| **Next BDT 3,00,000 / 4,00,000** | **10% / 15%** | Progressively graduated |
-| **Next BDT 4,00,000 / 5,00,000** | **15% / 20%** | Progressively graduated |
-| **Next BDT 5,00,000 / 20,00,000** | **20% / 25%** | Progressively graduated |
-| **Remaining Balance** | **25% / 30%** | Top marginal slab |
+| **First Tier (Up to Tax-Free Threshold)** | **0% (Nil)** | BDT 0 |
+| **Next BDT 300,000** | **10%** | BDT 30,000 |
+| **Next BDT 400,000** | **15%** | BDT 60,000 |
+| **Next BDT 500,000** | **20%** | BDT 1,00,000 |
+| **Next BDT 20,00,000** | **25%** | BDT 5,00,000 |
+| **Remaining Balance** | **30%** | Top marginal slab |
 
-### C. The Minimum Tax Floor Rules (Official Manual Page 67)
-* **Dhaka & Chattogram City Corporation areas:** BDT 5,000
-* **Other City Corporations:** BDT 4,000
-* **Non-City Corporation Municipal / Rural areas:** BDT 3,000
-* ⚠️ **CRUCIAL RULE FOR YOUTH & STUDENTS:** Minimum tax **only applies if Total Taxable Income exceeds the tax-free exemption threshold**. If your taxable income is equal to or less than the threshold (e.g., student earning BDT 25,000 salary where taxable part is BDT 16,667 $\le$ 3,50,000), total tax payable is strictly **BDT 0.00**. Minimum tax is **NEVER** charged on income below the tax-free limit!
+### C. The Minimum Tax Floor Rules (Official Manual Page 67 & Section 163)
+* **Standard Minimum Tax:** BDT 5,000 (New taxpayers: BDT 1,000 where applicable)
+* ⚠️ **CRUCIAL RULE FOR YOUTH & STUDENTS:** Minimum tax **only applies if Total Taxable Income exceeds the tax-free exemption threshold**. If your taxable income is equal to or less than the threshold (e.g., student with taxable income $\le$ BDT 400,000), total tax payable is strictly **BDT 0.00**. Minimum tax is **NEVER** charged on income below the tax-free limit!
 
 ---
 

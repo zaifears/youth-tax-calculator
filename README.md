@@ -51,7 +51,7 @@ flowchart TD
 
     Sal & Fin & Cap & Oth --> NetTaxable[Net Taxable Income]
     
-    NetTaxable --> Check{Taxable Income <= 350,000 BDT?}
+    NetTaxable --> Check{Taxable Income <= 400,000 BDT?}
     Check -->|Yes| Zero[Tax Payable: 0 BDT<br>Minimum Tax: 0 BDT<br>Bank TDS is 100% Refundable]
     Check -->|No| Slabs[Calculate progressive slabs<br>Minus Schedule 5 rebate]
 ```
@@ -163,7 +163,7 @@ This repository is optimized for autonomous coding agents, LLMs, and legal searc
 2. **Sixth Schedule, Part 1, Paragraph 8 (Stipends):** Any stipend or scholarship to meet the cost of education is 100% tax-free.
 3. **Section 56(g) (Family Support):** Money received from parents, spouse, or children is not income. It is a non-taxable capital receipt. It is declared in Form IT-10B under Source of Fund to explain where your money came from.
 4. **Section 70 (Capital Losses):** Losses from stock trading cannot reduce your salary tax. They are ring-fenced and carried forward for up to 6 consecutive years.
-5. **Section 163 (Minimum Tax):** Minimum tax (5,000 BDT in City Corporations) **never triggers** if your taxable income is equal to or less than 3,50,000 BDT. If you earn under the limit, your tax is strictly 0 BDT.
+5. **Section 163 (Minimum Tax):** Minimum tax (5,000 BDT in City Corporations) **never triggers** if your taxable income is equal to or less than 400,000 BDT (450,000 BDT for women and senior citizens). If you earn under the limit, your tax is strictly 0 BDT.
 
 ### Why We Use Deterministic Python
 

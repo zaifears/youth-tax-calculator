@@ -50,7 +50,7 @@ class BrokerPortfolio:
 class TaxProfile:
     # Taxpayer Classification
     taxpayer_name: str = "Young Taxpayer"
-    taxpayer_category: str = "general"  # general, female, senior_65, disabled, freedom_fighter
+    taxpayer_category: str = "general"  # general, female, senior_65, disabled, third_gender, freedom_fighter
     has_disabled_dependent: bool = False
     location: str = "dhaka_ctg"  # dhaka_ctg, other_city, non_city
     
@@ -160,50 +160,56 @@ class TaxCalculator:
             + p.foreign_remittance
         )
         
-        # G. Tax-Free Exemption Ceiling Determination
+        # G. Tax-Free Exemption Ceiling Determination (PwC Bangladesh Tax Summary)
         if p.taxpayer_category in ["female", "senior_65"]:
-            ceiling = 400000.0
-        elif p.taxpayer_category == "disabled":
-            ceiling = 475000.0
+            ceiling = 450000.0
+        elif p.taxpayer_category in ["disabled", "third_gender"]:
+            ceiling = 525000.0
         elif p.taxpayer_category == "freedom_fighter":
-            ceiling = 500000.0
+            ceiling = 550000.0
         else:
-            ceiling = 350000.0  # General Resident young male / taxpayer
+            ceiling = 400000.0  # General Resident young male / taxpayer
             
         if p.has_disabled_dependent:
             ceiling += 50000.0
             
-        # H. Progressive Tax Slabs Calculation (Finance Act)
+        # H. Progressive Tax Slabs Calculation (PwC Bangladesh Tax Summary)
+        # Up to ceiling: Nil (0%)
+        # Next 300,000 @ 10%
+        # Next 400,000 @ 15%
+        # Next 500,000 @ 20%
+        # Next 2,000,000 @ 25%
+        # On the rest of the income @ 30%
         gross_tax_liability = 0.0
         if total_taxable_income > ceiling:
             remaining = total_taxable_income - ceiling
             
-            # Slab 1: Next 100,000 @ 5%
-            s1 = min(remaining, 100000.0)
-            gross_tax_liability += s1 * 0.05
+            # Slab 1: Next 300,000 @ 10%
+            s1 = min(remaining, 300000.0)
+            gross_tax_liability += s1 * 0.10
             remaining -= s1
             
-            # Slab 2: Next 300,000 @ 10%
+            # Slab 2: Next 400,000 @ 15%
             if remaining > 0:
-                s2 = min(remaining, 300000.0)
-                gross_tax_liability += s2 * 0.10
+                s2 = min(remaining, 400000.0)
+                gross_tax_liability += s2 * 0.15
                 remaining -= s2
                 
-            # Slab 3: Next 400,000 @ 15%
+            # Slab 3: Next 500,000 @ 20%
             if remaining > 0:
-                s3 = min(remaining, 400000.0)
-                gross_tax_liability += s3 * 0.15
+                s3 = min(remaining, 500000.0)
+                gross_tax_liability += s3 * 0.20
                 remaining -= s3
                 
-            # Slab 4: Next 500,000 @ 20%
+            # Slab 4: Next 2,000,000 @ 25%
             if remaining > 0:
-                s4 = min(remaining, 500000.0)
-                gross_tax_liability += s4 * 0.20
+                s4 = min(remaining, 2000000.0)
+                gross_tax_liability += s4 * 0.25
                 remaining -= s4
                 
-            # Slab 5: Balance @ 25%
+            # Slab 5: On the rest of the income @ 30%
             if remaining > 0:
-                gross_tax_liability += remaining * 0.25
+                gross_tax_liability += remaining * 0.30
                 
         # I. Schedule 5 Investment Tax Rebate (Sixth Schedule, Part 2)
         eligible_dps = min(p.dps_annual_deposit, 120000.0)
@@ -429,8 +435,8 @@ def run_interactive_wizard() -> TaxProfile:
     p = TaxProfile()
     p.taxpayer_name = ask_str("Enter your name", "Young Taxpayer")
     
-    cat = ask_str("Category (general / female / senior_65 / disabled / freedom_fighter)", "general").lower()
-    p.taxpayer_category = cat if cat in ["general", "female", "senior_65", "disabled", "freedom_fighter"] else "general"
+    cat = ask_str("Category (general / female / senior_65 / disabled / third_gender / freedom_fighter)", "general").lower()
+    p.taxpayer_category = cat if cat in ["general", "female", "senior_65", "disabled", "third_gender", "freedom_fighter"] else "general"
     
     loc = ask_str("Location (dhaka_ctg / other_city / non_city)", "dhaka_ctg").lower()
     p.location = loc if loc in ["dhaka_ctg", "other_city", "non_city"] else "dhaka_ctg"
